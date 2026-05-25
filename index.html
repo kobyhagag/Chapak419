@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content='חפ"ק מפ ב׳'>
+<meta name="theme-color" content="#00e5a0">
+<title>חפ"ק מפ ב' – גדוד 419</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08090c;--surface:#0f1318;--surface2:#161c25;--surface3:#1d2533;
+  --border:#252f3d;--border2:#2e3d52;
+  --accent:#00e5a0;--accent-dim:rgba(0,229,160,.12);
+  --blue:#3b9eff;
+  --warn:#ffc93c;
+  --danger:#ff4f4f;--danger-dim:rgba(255,79,79,.12);
+  --purple:#a78bfa;
+  --text:#dce8f5;--text-dim:#5a7290;--text-mid:#8ca3bc;
+  --mono:'IBM Plex Mono',monospace;--sans:'Heebo',sans-serif;
+  --r:8px;
+  /* tablet touch targets */
+  --tap:52px;
+  --fs-base:16px;
+  --fs-sm:14px;
+  --fs-xs:13px;
+  --pad:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:var(--fs-base);}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;direction:rtl;-webkit-tap-highlight-color:transparent;}
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:var(--surface);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+
+/* ── HEADER ── */
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-box{width:42px;height:42px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:11px;color:#000;border-radius:4px;}
+.logo h1{font-size:18px;font-weight:800;}.logo h1 em{color:var(--accent);font-style:normal;}
+.logo small{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:2px;display:block;}
+.hdr-r{display:flex;align-items:center;gap:20px;}
+.clock{font-family:var(--mono);font-size:24px;color:var(--accent);letter-spacing:3px;line-height:1;}
+.clock-d{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:1px;margin-top:3px;text-align:center;}
+.bell{position:relative;cursor:pointer;font-size:22px;opacity:.7;padding:8px;border-radius:50%;transition:background .2s;}
+.bell:active{background:var(--surface2);}
+.bell-b{position:absolute;top:2px;right:2px;background:var(--danger);color:#fff;font-family:var(--mono);font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;}
+
+/* ── NAV ── */
+.nav{background:var(--surface);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;padding:0 8px;gap:0;}
+.nav::-webkit-scrollbar{height:0;}
+.nb{min-height:52px;padding:0 18px;background:none;border:none;border-bottom:3px solid transparent;color:var(--text-dim);font-family:var(--sans);font-size:var(--fs-sm);font-weight:500;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;display:flex;align-items:center;gap:6px;}
+.nb.active{color:var(--accent);border-bottom-color:var(--accent);}
+.nc{background:var(--surface3);color:var(--text-dim);font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;min-width:22px;text-align:center;}
+.nb.active .nc{background:var(--accent-dim);color:var(--accent);}
+
+/* ── MAIN ── */
+.main{padding:var(--pad);max-width:1100px;margin:0 auto;}
+.page{display:none;}.page.active{display:block;}
+
+/* ── BUTTONS ── */
+.btn{min-height:44px;padding:0 20px;border:none;font-family:var(--sans);font-size:var(--fs-sm);font-weight:700;cursor:pointer;transition:opacity .15s;border-radius:var(--r);display:inline-flex;align-items:center;justify-content:center;gap:6px;}
+.btn:active{opacity:.8;}
+.btn-p{background:var(--accent);color:#000;}
+.btn-g{background:transparent;color:var(--text-mid);border:1px solid var(--border);}
+.btn-g:active{background:var(--surface2);}
+.btn-d{background:var(--danger-dim);color:var(--danger);border:1px solid rgba(255,79,79,.3);}
+.btn-d:active{background:var(--danger);color:#fff;}
+.btn-s{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
+.btn-s:active{border-color:var(--accent);}
+.btn-sm{min-height:38px;padding:0 16px;font-size:var(--fs-xs);}
+.btn-xs{min-height:34px;padding:0 12px;font-size:12px;}
+
+/* ── STATS ── */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:700px){.g4{grid-template-columns:1fr 1fr;}}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;}
+.stat-l{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:9px;}
+.stat-v{font-size:34px;font-weight:900;line-height:1;}
+.stat-s{font-size:12px;color:var(--text-dim);margin-top:5px;}
+
+/* ── STATUS PILLS ── */
+.sp{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:13px;font-weight:700;white-space:nowrap;}
+.s-base{background:rgba(0,229,160,.12);color:var(--accent);border:1px solid rgba(0,229,160,.3);}
+.s-home{background:rgba(59,158,255,.12);color:var(--blue);border:1px solid rgba(59,158,255,.3);}
+.s-sick{background:rgba(255,201,60,.12);color:var(--warn);border:1px solid rgba(255,201,60,.3);}
+.s-other{background:rgba(167,139,250,.12);color:var(--purple);border:1px solid rgba(167,139,250,.3);}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0;}
+.dot-base{background:var(--accent);box-shadow:0 0 6px var(--accent);}
+.dot-home{background:var(--blue);}
+.dot-sick{background:var(--warn);}
+.dot-other{background:var(--purple);}
+
+/* ── SHIFT CARDS ── */
+.shift-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:18px;}
+.shift-card-header{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.shift-label{display:flex;align-items:center;gap:12px;}
+.shift-pill{padding:6px 16px;border-radius:20px;font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.5px;}
+.sp-yom{background:rgba(255,201,60,.15);color:var(--warn);border:1px solid rgba(255,201,60,.4);}
+.sp-layla{background:rgba(59,158,255,.15);color:var(--blue);border:1px solid rgba(59,158,255,.4);}
+.shift-time{font-family:var(--mono);font-size:14px;color:var(--text-dim);}
+.shift-now-tag{font-family:var(--mono);font-size:11px;color:var(--accent);background:var(--accent-dim);padding:5px 11px;border-radius:4px;font-weight:700;letter-spacing:1px;}
+
+/* ── ROLE SLOTS ── */
+.roles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border);}
+@media(max-width:640px){.roles-grid{grid-template-columns:1fr;}}
+.role-slot{padding:18px 20px;border-left:1px solid var(--border);}
+.role-slot:last-child{border-left:none;}
+@media(max-width:640px){.role-slot{border-left:none;border-bottom:1px solid var(--border);}}
+.role-slot:last-child{border-bottom:none;}
+.role-type{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.role-name{font-size:17px;font-weight:700;margin-bottom:4px;}
+.role-rank{font-size:13px;color:var(--text-dim);}
+.role-empty{font-size:14px;color:var(--border2);font-style:italic;}
+.role-actions{display:flex;gap:8px;margin-top:12px;}
+.assign-btn{background:var(--surface2);border:1px dashed var(--border2);color:var(--text-dim);padding:10px 14px;border-radius:var(--r);font-size:14px;cursor:pointer;font-family:var(--sans);width:100%;min-height:42px;}
+.assign-btn:active{border-color:var(--accent);color:var(--accent);}
+
+/* ── WEEK GRID ── */
+.week-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.wg{display:grid;grid-template-columns:72px repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;min-width:560px;}
+.wc{background:var(--surface);padding:8px 9px;min-height:54px;}
+.wc.wc-head{background:var(--surface2);text-align:center;font-size:12px;font-weight:600;color:var(--text-dim);min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:9px 5px;}
+.wc.wc-today{background:rgba(0,229,160,.04);}
+.wc.wc-head.wc-today{color:var(--accent);}
+.wc-num{font-family:var(--mono);font-size:11px;}
+.wc-slot{border-radius:4px;padding:5px 7px;font-size:12px;margin-bottom:4px;}
+.wc-slot.filled{background:var(--surface2);border-right:3px solid var(--accent);cursor:pointer;}
+.wc-slot.empty-slot{border:1px dashed var(--border2);color:var(--text-dim);cursor:pointer;min-height:32px;display:flex;align-items:center;}
+.wc-slot.empty-slot:active{border-color:var(--accent);color:var(--accent);}
+.wc-role-type{font-size:10px;color:var(--text-dim);}
+
+/* ── PERSONNEL CARDS ── */
+.soldier-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.sc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px;position:relative;overflow:hidden;}
+.sc::before{content:'';position:absolute;right:0;top:0;bottom:0;width:4px;}
+.sc.s-base::before{background:var(--accent);}
+.sc.s-home::before{background:var(--blue);}
+.sc.s-sick::before{background:var(--warn);}
+.sc.s-other::before{background:var(--purple);}
+.sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.sc-id{display:flex;align-items:center;gap:11px;}
+.avatar{width:46px;height:46px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:var(--accent);flex-shrink:0;}
+.sc-name{font-size:16px;font-weight:700;}
+.sc-rank{font-size:12px;color:var(--text-dim);margin-top:2px;}
+.sc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.status-sel{background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:14px;padding:8px 12px;border-radius:var(--r);cursor:pointer;flex:1;min-height:42px;min-width:130px;}
+.status-sel:focus{outline:none;border-color:var(--accent);}
+
+/* ── ALERTS ── */
+.al-item{display:flex;align-items:flex-start;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;}
+.al-item.al-warn{border-color:rgba(255,201,60,.3);background:rgba(255,201,60,.04);}
+.al-item.al-info{border-color:rgba(59,158,255,.3);background:rgba(59,158,255,.04);}
+.al-item.al-ok{border-color:rgba(0,229,160,.3);background:rgba(0,229,160,.04);}
+.al-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
+.al-body{flex:1;}
+.al-title{font-size:15px;font-weight:700;margin-bottom:3px;}
+.al-desc{font-size:13px;color:var(--text-dim);}
+.al-time{font-family:var(--mono);font-size:11px;color:var(--text-dim);flex-shrink:0;}
+.al-x{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:22px;padding:0 0 0 6px;line-height:1;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;}
+
+/* ── TABLE ── */
+.dt{width:100%;border-collapse:collapse;font-size:var(--fs-sm);}
+.dt th{background:var(--surface2);padding:12px 14px;text-align:right;font-weight:600;color:var(--text-dim);font-size:12px;letter-spacing:.5px;border-bottom:1px solid var(--border);white-space:nowrap;}
+.dt td{padding:13px 14px;border-bottom:1px solid var(--surface2);vertical-align:middle;}
+.dt tr:last-child td{border-bottom:none;}
+.tag{display:inline-block;padding:3px 9px;border-radius:4px;font-size:12px;font-weight:600;background:var(--surface2);color:var(--text-mid);border:1px solid var(--border);}
+
+/* ── FORMS ── */
+.fr{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+.fg{display:flex;flex-direction:column;gap:6px;flex:1;min-width:150px;}
+.fg label{font-size:12px;color:var(--text-dim);font-weight:600;letter-spacing:.5px;}
+.fg input,.fg select{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:11px 14px;font-family:var(--sans);font-size:var(--fs-sm);border-radius:var(--r);outline:none;direction:rtl;min-height:44px;transition:border-color .2s;}
+.fg input:focus,.fg select:focus{border-color:var(--accent);}
+
+/* ── MODAL ── */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;}
+.modal{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:26px;width:100%;max-width:500px;max-height:94vh;overflow-y:auto;}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.modal-hdr h2{font-size:17px;font-weight:800;}
+.modal-x{background:none;border:none;color:var(--text-dim);font-size:26px;cursor:pointer;line-height:1;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;}
+.modal-ftr{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid var(--border);}
+
+/* ── MISC ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px;}
+.sec-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;gap:12px;flex-wrap:wrap;}
+.sec-title{font-size:20px;font-weight:800;}
+.sec-title small{display:block;font-size:12px;font-family:var(--mono);color:var(--text-dim);font-weight:400;margin-top:4px;}
+.empty{text-align:center;padding:48px 20px;color:var(--text-dim);}
+.empty .ei{font-size:40px;margin-bottom:12px;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--surface);border:1px solid var(--border2);color:var(--text);padding:12px 22px;border-radius:var(--r);font-size:var(--fs-sm);font-weight:500;z-index:9999;transition:transform .3s;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.5);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.t-ok{border-color:rgba(0,229,160,.4);color:var(--accent);}
+.toast.t-err{border-color:rgba(255,79,79,.4);color:var(--danger);}
+
+/* ── BUILDER ── */
+.builder-day{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden;}
+.builder-day-hdr{padding:14px 18px;background:var(--surface2);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.builder-day-name{font-size:17px;font-weight:800;}
+.builder-day-date{font-family:var(--mono);font-size:12px;color:var(--text-dim);}
+.builder-day-prog{font-family:var(--mono);font-size:12px;color:var(--accent);}
+.builder-shifts{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+@media(max-width:640px){.builder-shifts{grid-template-columns:1fr;}}
+.builder-shift{padding:16px 18px;border-left:1px solid var(--border);}
+.builder-shift:last-child{border-left:none;}
+@media(max-width:640px){.builder-shift{border-left:none;border-top:1px solid var(--border);}}
+.builder-shift-title{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.builder-roles{display:flex;flex-direction:column;gap:10px;}
+.builder-role-row{display:flex;align-items:center;gap:10px;}
+.builder-role-lbl{font-size:13px;color:var(--text-dim);min-width:66px;font-weight:600;flex-shrink:0;}
+.builder-sel{flex:1;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:14px;padding:9px 12px;border-radius:var(--r);cursor:pointer;direction:rtl;min-height:44px;}
+.builder-sel:focus{outline:none;border-color:var(--accent);}
+.builder-sel.filled{border-color:rgba(0,229,160,.5);background:rgba(0,229,160,.07);}
+.builder-sel.conflict{border-color:rgba(255,79,79,.6);background:rgba(255,79,79,.07);}
+
+/* ── PRINT ── */
+@media print{
+  .header,.nav,.btn,.bell,.mo,.toast{display:none!important;}
+  body{background:#fff!important;color:#000!important;}
+  .main{padding:0!important;max-width:100%!important;}
+  .page{display:none!important;}
+}
+#print-area{display:none;}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-box">חפ"ק</div>
+    <div>
+      <h1>חפ"ק מפ <em>ב'</em></h1>
+      <small>גדוד 419</small>
+    </div>
+  </div>
+  <div class="hdr-r">
+    <button onclick="document.getElementById('modal-data').style.display='flex'"
+      style="background:none;border:1px solid var(--border);color:var(--text-dim);font-size:12px;padding:6px 12px;border-radius:var(--r);cursor:pointer;font-family:var(--sans)">
+      💾 גיבוי
+    </button>
+    <div class="bell" onclick="showPage('alerts',this)" title="התראות">
+      🔔<div class="bell-b" id="bell-b">0</div>
+    </div>
+    <div>
+      <div class="clock" id="clock">--:--:--</div>
+      <div class="clock-d" id="clock-d"></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <button class="nb active" data-page="today"     onclick="showPage('today',this)">📋 היום <span class="nc" id="nc-today">0</span></button>
+  <button class="nb" data-page="personnel" onclick="showPage('personnel',this)">👥 כוח אדם <span class="nc" id="nc-pers">0</span></button>
+  <button class="nb" data-page="builder"   onclick="showPage('builder',this)">🗓 בניית שבוע</button>
+  <button class="nb" data-page="week"      onclick="showPage('week',this)">📅 תצוגת שבוע</button>
+  <button class="nb" data-page="history"   onclick="showPage('history',this)">🗂 היסטוריה</button>
+  <button class="nb" data-page="alerts"    onclick="showPage('alerts',this)">⚠️ התראות <span class="nc" id="nc-alerts">0</span></button>
+</nav>
+
+<main class="main">
+
+<!-- ═══ TODAY ═══ -->
+<div id="page-today" class="page active">
+  <div class="sec-hdr">
+    <div class="sec-title">מצב יום <small id="today-lbl"></small></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-s btn-sm" onclick="navDate(-1)">◀ אתמול</button>
+      <button class="btn btn-s btn-sm" onclick="navDate(0)">היום</button>
+      <button class="btn btn-s btn-sm" onclick="navDate(1)">מחר ▶</button>
+      <button class="btn btn-p btn-sm" onclick="openDailyReport()">📊 דוח נוכחות</button>
+    </div>
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="g4" style="margin-bottom:16px" id="today-stats"></div>
+
+  <!-- STATUS GRID -->
+  <div class="card" style="margin-bottom:16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px">
+      <div style="font-weight:700;font-size:13px">סטטוס לוחמים</div>
+      <button class="btn btn-g btn-xs" onclick="showPage('personnel',document.querySelector('[data-page=personnel]'))">ניהול →</button>
+    </div>
+    <div id="today-status" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:7px;"></div>
+  </div>
+
+  <!-- SHIFT CARDS -->
+  <div id="today-shifts"></div>
+</div>
+
+<!-- ═══ PERSONNEL ═══ -->
+<div id="page-personnel" class="page">
+  <div class="sec-hdr">
+    <div class="sec-title">כוח אדם <small>לוחמים ונהגים</small></div>
+    <button class="btn btn-p btn-sm" onclick="openPersonModal()">＋ הוסף</button>
+  </div>
+  <div class="g4" style="margin-bottom:16px" id="pers-stats"></div>
+  <div id="soldier-grid" class="soldier-grid"></div>
+</div>
+
+<!-- ═══ WEEK ═══ -->
+<div id="page-week" class="page">
+  <div class="sec-hdr">
+    <div class="sec-title">תצוגת שבוע <small id="week-range"></small></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <button class="btn btn-g btn-sm" onclick="changeWeek(-1)">◀ קודם</button>
+      <button class="btn btn-g btn-sm" onclick="changeWeek(0)">היום</button>
+      <button class="btn btn-g btn-sm" onclick="changeWeek(1)">הבא ▶</button>
+    </div>
+  </div>
+  <div class="week-wrap"><div id="week-grid"></div></div>
+</div>
+
+<!-- ═══ BUILDER ═══ -->
+<div id="page-builder" class="page">
+  <div class="sec-hdr">
+    <div class="sec-title">🗓 בניית סידור שבועי <small id="builder-range"></small></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+      <button class="btn btn-g btn-sm" onclick="changeBuilderWeek(-1)">◀ שבוע קודם</button>
+      <button class="btn btn-g btn-sm" onclick="changeBuilderWeek(0)">השבוע</button>
+      <button class="btn btn-g btn-sm" onclick="changeBuilderWeek(1)">שבוע הבא ▶</button>
+      <button class="btn btn-p btn-sm" onclick="openDistribute()">📤 הפץ סידור</button>
+    </div>
+  </div>
+
+  <!-- progress bar -->
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:14px">
+    <div style="flex:1">
+      <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+        <span style="font-size:12px;font-weight:600">התקדמות מילוי</span>
+        <span style="font-family:var(--mono);font-size:12px;color:var(--accent)" id="builder-progress-txt">0/42</span>
+      </div>
+      <div style="background:var(--surface2);border-radius:4px;height:6px;overflow:hidden">
+        <div id="builder-progress-bar" style="background:var(--accent);height:100%;width:0%;transition:width .4s;border-radius:4px"></div>
+      </div>
+    </div>
+    <button class="btn btn-g btn-sm" onclick="clearWeekAssignments()">🗑 נקה שבוע</button>
+  </div>
+
+  <div id="builder-grid"></div>
+</div>
+
+<!-- ═══ HISTORY ═══ -->
+<div id="page-history" class="page">
+  <div class="sec-hdr">
+    <div class="sec-title">היסטוריית משמרות</div>
+    <button class="btn btn-p btn-sm" onclick="openAssignModal(null,null,null)">＋ הקצאה ידנית</button>
+  </div>
+  <div class="card" style="padding:11px 16px;margin-bottom:12px">
+    <div class="fr" style="margin:0;align-items:flex-end">
+      <div class="fg" style="min-width:120px"><label>מ-תאריך</label><input type="date" id="f-from"></div>
+      <div class="fg" style="min-width:120px"><label>עד-תאריך</label><input type="date" id="f-to"></div>
+      <div class="fg" style="min-width:110px"><label>משמרת</label>
+        <select id="f-type"><option value="">הכל</option><option value="yom">יום</option><option value="layla">לילה</option></select>
+      </div>
+      <div class="fg" style="min-width:110px"><label>תפקיד</label>
+        <select id="f-role"><option value="">הכל</option><option value="nahag">נהג</option><option value="lochem1">לוחם 1</option><option value="lochem2">לוחם 2</option></select>
+      </div>
+      <div class="fg" style="min-width:120px"><label>חייל/ת</label><select id="f-person"><option value="">הכל</option></select></div>
+      <button class="btn btn-g btn-sm" onclick="clearFilters()">נקה</button>
+    </div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <table class="dt"><thead><tr><th>תאריך</th><th>משמרת</th><th>תפקיד</th><th>שם</th><th>הערות</th><th></th></tr></thead>
+    <tbody id="hist-tbody"></tbody></table>
+  </div>
+</div>
+
+<!-- ═══ ALERTS ═══ -->
+<div id="page-alerts" class="page">
+  <div class="sec-hdr">
+    <div class="sec-title">התראות ועדכונים</div>
+    <button class="btn btn-g btn-sm" onclick="dismissAll()">נקה הכל</button>
+  </div>
+  <div class="card">
+    <div style="font-weight:700;font-size:13px;margin-bottom:10px">הוסף התראה</div>
+    <div class="fr" style="margin:0;align-items:flex-end">
+      <div class="fg" style="min-width:200px"><label>כותרת</label><input type="text" id="al-title" placeholder="הזן כותרת..."></div>
+      <div class="fg" style="min-width:100px"><label>סוג</label>
+        <select id="al-type"><option value="warn">⚠️ אזהרה</option><option value="info">ℹ️ מידע</option><option value="ok">✅ עדכון</option></select>
+      </div>
+      <button class="btn btn-p btn-sm" onclick="addManualAlert()">הוסף</button>
+    </div>
+  </div>
+  <div id="alerts-list"></div>
+</div>
+
+</main>
+
+<!-- MODAL: DISTRIBUTE -->
+<div id="modal-distribute" class="mo" style="display:none" onclick="ovClose(event,'modal-distribute')">
+<div class="modal" style="max-width:600px">
+  <div class="modal-hdr"><h2>📤 הפצת סידור שבועי</h2><button class="modal-x" onclick="closeModal('modal-distribute')">×</button></div>
+
+  <!-- week selector inside modal -->
+  <div style="display:flex;gap:8px;margin-bottom:14px;align-items:center">
+    <span style="font-size:13px;font-weight:600">שבוע:</span>
+    <span id="dist-range-label" style="font-family:var(--mono);font-size:12px;color:var(--accent)"></span>
+  </div>
+
+  <!-- whatsapp text preview -->
+  <div style="margin-bottom:12px">
+    <div style="font-size:11px;color:var(--text-dim);font-weight:600;letter-spacing:.5px;margin-bottom:6px">תצוגה מקדימה – וואטסאפ</div>
+    <textarea id="wa-preview" readonly
+      style="width:100%;min-height:260px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;padding:12px;border-radius:var(--r);resize:vertical;direction:rtl;line-height:1.7"></textarea>
+  </div>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn btn-p" onclick="copyWA()" style="flex:1">📋 העתק לוואטסאפ</button>
+    <button class="btn btn-g" onclick="printSchedule()" style="flex:1">🖨️ הדפסה / PDF</button>
+  </div>
+</div>
+</div>
+
+<!-- MODAL: ASSIGN ROLE -->
+<div id="modal-assign" class="mo" style="display:none" onclick="ovClose(event,'modal-assign')">
+<div class="modal" style="max-width:520px">
+  <div class="modal-hdr"><h2 id="assign-title">הקצאת תפקיד</h2><button class="modal-x" onclick="closeModal('modal-assign')">×</button></div>
+  <div class="fr">
+    <div class="fg"><label>תאריך *</label><input type="date" id="a-date"></div>
+    <div class="fg"><label>משמרת *</label>
+      <select id="a-shift"><option value="layla">🌙 לילה (18:00–06:00)</option><option value="yom">☀️ יום (06:00–18:00)</option></select>
+    </div>
+  </div>
+  <div class="fg" style="margin-bottom:10px"><label>תפקיד *</label>
+    <select id="a-role">
+      <option value="nahag">🚗 נהג</option>
+      <option value="lochem1">⚔️ לוחם 1</option>
+      <option value="lochem2">⚔️ לוחם 2</option>
+    </select>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div id="rec-panel" style="margin-bottom:12px">
+    <div style="font-size:11px;font-weight:700;color:var(--text-dim);letter-spacing:.5px;margin-bottom:7px">💡 המלצות – לפי עומס משמרות</div>
+    <div id="rec-list"></div>
+  </div>
+
+  <div class="fg" style="margin-bottom:10px"><label>חייל/ת *</label>
+    <select id="a-person"><option value="">-- בחר/י --</option></select>
+  </div>
+  <div class="fg" style="margin-bottom:4px"><label>הערות</label>
+    <input type="text" id="a-notes" placeholder="אופציונלי...">
+  </div>
+  <input type="hidden" id="a-id">
+  <div class="modal-ftr">
+    <button class="btn btn-g" onclick="closeModal('modal-assign')">ביטול</button>
+    <button class="btn btn-p" onclick="saveAssignment()">שמור</button>
+  </div>
+</div>
+</div>
+
+<!-- MODAL: PERSON -->
+<div id="modal-person" class="mo" style="display:none" onclick="ovClose(event,'modal-person')">
+<div class="modal">
+  <div class="modal-hdr"><h2>👤 הוספת חייל/ת</h2><button class="modal-x" onclick="closeModal('modal-person')">×</button></div>
+  <div class="fr">
+    <div class="fg"><label>שם מלא *</label><input type="text" id="p-name" placeholder="שם פרטי ושם משפחה"></div>
+    <div class="fg"><label>דרגה</label>
+      <select id="p-rank"><option>טוראי</option><option>רב טוראי</option><option>סמל</option><option>סמל ראשון</option><option>רב סמל</option><option>רב סמל בכיר</option><option>סגן</option><option>סרן</option><option>רב סרן</option></select>
+    </div>
+  </div>
+  <div class="fr">
+    <div class="fg"><label>תפקיד עיקרי</label>
+      <select id="p-mainrole"><option value="lochem">⚔️ לוחם</option><option value="nahag">🚗 נהג</option><option value="both">שניהם</option></select>
+    </div>
+    <div class="fg"><label>טלפון</label><input type="tel" id="p-phone" placeholder="05X-XXXXXXX" dir="ltr"></div>
+  </div>
+  <div class="fg" style="margin-bottom:10px"><label>מגבלות / הערות</label><input type="text" id="p-notes" placeholder='לא זמין בסופ"ש...'></div>
+  <div class="modal-ftr">
+    <button class="btn btn-g" onclick="closeModal('modal-person')">ביטול</button>
+    <button class="btn btn-p" onclick="savePerson()">הוסף</button>
+  </div>
+</div>
+</div>
+
+<!-- MODAL: STATUS RANGE -->
+<div id="modal-status" class="mo" style="display:none" onclick="ovClose(event,'modal-status')">
+<div class="modal">
+  <div class="modal-hdr">
+    <h2 id="status-modal-title">עדכון סטטוס</h2>
+    <button class="modal-x" onclick="closeModal('modal-status')">×</button>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:10px;background:var(--surface2);border-radius:var(--r);padding:12px 14px;margin-bottom:16px">
+    <div id="status-modal-avatar" style="width:42px;height:42px;border-radius:50%;background:var(--surface3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:var(--accent);flex-shrink:0"></div>
+    <div>
+      <div id="status-modal-name" style="font-size:16px;font-weight:700"></div>
+      <div id="status-modal-rank" style="font-size:12px;color:var(--text-dim)"></div>
+    </div>
+  </div>
+
+  <div class="fg" style="margin-bottom:14px">
+    <label>סטטוס</label>
+    <select id="st-status">
+      <option value="base">🟢 במוצב</option>
+      <option value="home">🔵 בבית</option>
+      <option value="sick">🟡 גימלים</option>
+      <option value="other">🟣 אחר</option>
+    </select>
+  </div>
+
+  <!-- BASE ARRIVAL DATE (shown only when status = base) -->
+  <div id="st-base-wrap" style="display:none;margin-bottom:14px">
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px;background:var(--surface2);border-radius:var(--r);padding:9px 12px;border-right:3px solid var(--accent)">
+      מאיזה תאריך הלוחם/ת במוצב? ממנו יספרו הימים.
+    </div>
+    <div class="fg">
+      <label>תאריך הגעה למוצב</label>
+      <input type="date" id="st-base-start">
+    </div>
+  </div>
+
+  <div id="st-range-wrap" style="display:none">
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;background:var(--surface2);border-radius:var(--r);padding:10px 12px;border-right:3px solid var(--warn)">
+      הגדר טווח תאריכים לאי-זמינות. בסיום הטווח הסטטוס יחזור אוטומטית ל<strong>במוצב</strong>.
+    </div>
+    <div class="fr" style="margin-bottom:6px">
+      <div class="fg"><label>מתאריך *</label><input type="date" id="st-from"></div>
+      <div class="fg"><label>עד תאריך *</label><input type="date" id="st-to"></div>
+    </div>
+    <div class="fg" style="margin-bottom:4px"><label>הערה (אופציונלי)</label>
+      <input type="text" id="st-note" placeholder='לדוג׳: אשפוז, חופשת מחלה...'>
+    </div>
+  </div>
+
+  <input type="hidden" id="st-pid">
+  <div class="modal-ftr">
+    <button class="btn btn-g" onclick="closeModal('modal-status')">ביטול</button>
+    <button class="btn btn-p" onclick="saveStatusRange()">שמור</button>
+  </div>
+</div>
+</div>
+
+
+<!-- MODAL: IMPORT/EXPORT -->
+<div id="modal-data" class="mo" style="display:none" onclick="ovClose(event,'modal-data')">
+<div class="modal" style="max-width:440px">
+  <div class="modal-hdr"><h2>💾 גיבוי ושחזור נתונים</h2><button class="modal-x" onclick="closeModal('modal-data')">×</button></div>
+
+  <div style="margin-bottom:18px">
+    <div style="font-size:13px;font-weight:700;margin-bottom:8px">📤 ייצוא – שמור גיבוי</div>
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">מוריד קובץ JSON עם כל הנתונים – כוח אדם, משמרות, סטטוסים.</div>
+    <button class="btn btn-p" style="width:100%" onclick="exportData()">הורד קובץ גיבוי</button>
+  </div>
+
+  <div style="border-top:1px solid var(--border);padding-top:18px">
+    <div style="font-size:13px;font-weight:700;margin-bottom:8px">📥 ייבוא – שחזר גיבוי</div>
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">⚠️ מחליף את כל הנתונים הקיימים.</div>
+    <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
+    <button class="btn btn-s" style="width:100%" onclick="document.getElementById('import-file').click()">בחר קובץ גיבוי לטעינה</button>
+  </div>
+</div>
+</div>
+
+<div id="modal-report" class="mo" style="display:none" onclick="ovClose(event,'modal-report')">
+<div class="modal" style="max-width:600px">
+  <div class="modal-hdr">
+    <h2>📊 דוח נוכחות – שלישות גדוד</h2>
+    <button class="modal-x" onclick="closeModal('modal-report')">×</button>
+  </div>
+
+  <!-- tabs -->
+  <div style="display:flex;border-bottom:1px solid var(--border);margin-bottom:16px;gap:0">
+    <button id="rtab-report" onclick="switchReportTab('report')"
+      style="flex:1;padding:10px;background:none;border:none;border-bottom:2px solid var(--accent);color:var(--accent);font-family:var(--sans);font-size:13px;font-weight:700;cursor:pointer">
+      📋 דוח
+    </button>
+    <button id="rtab-manage" onclick="switchReportTab('manage')"
+      style="flex:1;padding:10px;background:none;border:none;border-bottom:2px solid transparent;color:var(--text-dim);font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer">
+      👤 ניהול כוח אדם לדיווח
+    </button>
+  </div>
+
+  <!-- REPORT TAB -->
+  <div id="rpanel-report">
+    <div style="display:flex;gap:8px;margin-bottom:14px;align-items:center;flex-wrap:wrap">
+      <div style="font-size:13px;font-weight:600;color:var(--text-dim)">דוח ל:</div>
+      <input type="date" id="report-date"
+        style="background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:7px 11px;font-family:var(--sans);font-size:13px;border-radius:var(--r);outline:none;"
+        onchange="refreshReport()">
+      <button class="btn btn-g btn-sm" onclick="setReportDate(0)">היום</button>
+      <button class="btn btn-g btn-sm" onclick="setReportDate(1)">מחר</button>
+    </div>
+    <div style="font-size:11px;color:var(--text-dim);margin-bottom:7px;font-weight:600;letter-spacing:.5px">תצוגה מקדימה</div>
+    <textarea id="report-preview" readonly
+      style="width:100%;min-height:320px;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:12px;padding:13px;border-radius:var(--r);resize:vertical;direction:rtl;line-height:1.8"></textarea>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-p" style="flex:1;background:#25D366;color:#fff" onclick="sendWA()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.557 4.126 1.532 5.862L.057 23.5l5.797-1.52A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.9 9.9 0 01-5.031-1.374l-.361-.214-3.741.981.999-3.648-.235-.374A9.862 9.862 0 012.1 12C2.1 6.534 6.534 2.1 12 2.1c5.467 0 9.9 4.434 9.9 9.9 0 5.467-4.433 9.9-9.9 9.9z"/></svg>
+        שלח בוואטסאפ
+      </button>
+      <button class="btn btn-g" onclick="copyReport()" title="העתק ללוח">📋</button>
+      <button class="btn btn-g" onclick="closeModal('modal-report')">סגור</button>
+    </div>
+  </div>
+
+  <!-- MANAGE TAB -->
+  <div id="rpanel-manage" style="display:none">
+    <div style="font-size:12px;color:var(--text-dim);background:var(--surface2);border-radius:var(--r);padding:9px 12px;margin-bottom:14px;border-right:3px solid var(--blue)">
+      אנשים אלו מופיעים <strong>בדוח לשלישות בלבד</strong> ואינם קשורים לשיבוץ משמרות.
+    </div>
+
+    <!-- add person form -->
+    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:flex-end">
+      <div class="fg" style="min-width:140px"><label>שם מלא *</label><input type="text" id="rp-name" placeholder="שם פרטי ושם משפחה"></div>
+      <div class="fg" style="min-width:100px"><label>תפקיד</label><input type="text" id="rp-role" placeholder='לדוג׳: נאור'></div>
+      <button class="btn btn-p btn-sm" style="align-self:flex-end" onclick="addReportPerson()">＋ הוסף</button>
+    </div>
+
+    <!-- list -->
+    <div id="report-people-list"></div>
+  </div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════
+// ── CLEAR OLD VERSIONS (never touches v4 data) ──
+['chapak3_assignments','chapak3_personnel','chapak3_alerts',
+ 'chapak2_shifts','chapak2_personnel','chapak2_alerts',
+ 'chapak_shifts','chapak_personnel'].forEach(k=>localStorage.removeItem(k));
+
+let assignments  = JSON.parse(localStorage.getItem('chapak4_assignments') || '[]');
+let personnel    = JSON.parse(localStorage.getItem('chapak4_personnel')   || '[]');
+let alerts       = JSON.parse(localStorage.getItem('chapak4_alerts')      || '[]');
+let reportPeople = JSON.parse(localStorage.getItem('chapak4_reportpeople')|| '[]');
+let weekOff     = 0;
+let curPage     = 'today';
+let viewDate    = todayStr(); // YYYY-MM-DD
+
+
+
+// ═══════════════════════════════════════════
+//  CONSTANTS
+// ═══════════════════════════════════════════
+const SHIFTS = {
+  yom:   {label:'יום',   icon:'☀️', start:'06:00', end:'18:00', cls:'sp-yom'},
+  layla: {label:'לילה',  icon:'🌙', start:'18:00', end:'06:00', cls:'sp-layla'},
+};
+const ROLES = {
+  nahag:   {label:'נהג',    icon:'🚗', order:0},
+  lochem1: {label:'לוחם 1', icon:'⚔️', order:1},
+  lochem2: {label:'לוחם 2', icon:'⚔️', order:2},
+};
+const ROLE_ORDER = ['nahag','lochem1','lochem2'];
+
+const STATUS = {
+  base: {l:'במוצב',  cls:'s-base',  dot:'dot-base',  ic:'🟢'},
+  home: {l:'בבית',   cls:'s-home',  dot:'dot-home',  ic:'🔵'},
+  sick: {l:'גימלים', cls:'s-sick',  dot:'dot-sick',  ic:'🟡'},
+  other:{l:'אחר',    cls:'s-other', dot:'dot-other', ic:'🟣'},
+};
+const DAYS  = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+const MONS  = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+
+// ═══════════════════════════════════════════
+//  UTILS
+// ═══════════════════════════════════════════
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+function save(){
+  localStorage.setItem('chapak4_assignments',  JSON.stringify(assignments));
+  localStorage.setItem('chapak4_personnel',    JSON.stringify(personnel));
+  localStorage.setItem('chapak4_alerts',       JSON.stringify(alerts));
+  localStorage.setItem('chapak4_reportpeople', JSON.stringify(reportPeople));
+}
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+function nowHH(){ const n=new Date(); return n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0'); }
+
+// ── KEY FIX: compute status dynamically for any given date ──
+function getStatusOnDate(p, date){
+  if(!p.statusFrom && !p.statusTo) return p.status;
+  const d = date || todayStr();
+  // Person is away during [statusFrom, statusTo] inclusive
+  if(p.statusFrom && p.statusTo && d >= p.statusFrom && d <= p.statusTo){
+    return p.status === 'base' ? 'base' : p.status;
+  }
+  if(p.statusFrom && d < p.statusFrom) return 'base'; // not yet away
+  if(p.statusTo   && d > p.statusTo)   return 'base'; // already back
+  return p.status;
+}
+
+function isAvailableOnDate(p, date){
+  return getStatusOnDate(p, date) === 'base';
+}
+
+function isShiftActive(shiftType, date){
+  if(date !== todayStr()) return false;
+  const now = nowHH();
+  if(shiftType==='yom')   return now>='06:00' && now<'18:00';
+  if(shiftType==='layla') return now>='18:00' || now<'06:00';
+  return false;
+}
+
+function getAssignment(date, shiftType, role){
+  return assignments.find(a=>a.date===date && a.shift===shiftType && a.role===role);
+}
+
+function fmtDate(ds){
+  const d=new Date(ds+'T12:00');
+  return DAYS[d.getDay()]+', '+d.getDate()+' '+MONS[d.getMonth()];
+}
+
+// ═══════════════════════════════════════════
+//  CLOCK
+// ═══════════════════════════════════════════
+function tickClock(){
+  const n=new Date();
+  document.getElementById('clock').textContent =
+    n.getHours().toString().padStart(2,'0')+':'+
+    n.getMinutes().toString().padStart(2,'0')+':'+
+    n.getSeconds().toString().padStart(2,'0');
+  document.getElementById('clock-d').textContent =
+    DAYS[n.getDay()]+' '+n.getDate()+' '+MONS[n.getMonth()];
+}
+setInterval(tickClock,1000); tickClock();
+
+// ═══════════════════════════════════════════
+//  NAV / PAGES
+// ═══════════════════════════════════════════
+function showPage(name, btn){
+  curPage=name;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  if(btn&&btn.classList) btn.classList.add('active');
+  else { const b=document.querySelector('[data-page='+name+']'); if(b)b.classList.add('active'); }
+  renderPage(name);
+}
+
+function renderPage(n){
+  updateCounts();
+  if(n==='today')     renderToday();
+  if(n==='personnel') renderPersonnel();
+  if(n==='builder')   renderBuilder();
+  if(n==='week')      renderWeek();
+  if(n==='history')   renderHistory();
+  if(n==='alerts')    renderAlerts();
+}
+
+function updateCounts(){
+  const td=todayStr();
+  // count filled slots for today
+  const todayFilled = assignments.filter(a=>a.date===td).length;
+  document.getElementById('nc-today').textContent  = todayFilled;
+  document.getElementById('nc-pers').textContent   = personnel.length;
+  const ua=alerts.filter(a=>!a.dismissed).length;
+  document.getElementById('nc-alerts').textContent = ua;
+  const bb=document.getElementById('bell-b');
+  bb.style.display=ua>0?'flex':'none'; bb.textContent=ua;
+}
+
+// ═══════════════════════════════════════════
+//  TODAY
+// ═══════════════════════════════════════════
+function navDate(dir){
+  if(dir===0){ viewDate=todayStr(); }
+  else {
+    const d=new Date(viewDate+'T12:00');
+    d.setDate(d.getDate()+dir);
+    viewDate=d.toISOString().slice(0,10);
+  }
+  renderToday();
+}
+
+function renderToday(){
+  document.getElementById('today-lbl').textContent = fmtDate(viewDate);
+
+  const isToday = viewDate===todayStr();
+  const onBase  = personnel.filter(p=> isAvailableOnDate(p, viewDate)).length;
+  const onHome  = personnel.filter(p=> getStatusOnDate(p, viewDate)==='home').length;
+  const sick    = personnel.filter(p=> getStatusOnDate(p, viewDate)==='sick').length;
+  const filled  = assignments.filter(a=>a.date===viewDate).length;
+  const total   = 6; // 2 shifts × 3 roles
+
+  document.getElementById('today-stats').innerHTML=`
+    <div class="stat"><div class="stat-l">מאויש</div><div class="stat-v" style="color:var(--accent)">${filled}/${total}</div><div class="stat-s">תפקידים</div></div>
+    <div class="stat"><div class="stat-l">במוצב</div><div class="stat-v" style="color:var(--accent)">${onBase}</div><div class="stat-s">זמינים</div></div>
+    <div class="stat"><div class="stat-l">בבית</div><div class="stat-v" style="color:var(--blue)">${onHome}</div><div class="stat-s">לא במוצב</div></div>
+    <div class="stat"><div class="stat-l">גימלים</div><div class="stat-v" style="color:var(--warn)">${sick}</div><div class="stat-s">חולים</div></div>`;
+
+  // STATUS GRID
+  document.getElementById('today-status').innerHTML = personnel.length===0
+    ? '<div style="color:var(--text-dim);font-size:13px">אין אנשים ברשימה</div>'
+    : personnel.map(p=>{
+        const st=getStatusOnDate(p, viewDate);
+        const sd=STATUS[st]||STATUS.other;
+        const rangeInfo = st!=='base' && p.statusTo
+          ? `<div style="font-size:10px;color:var(--text-dim);font-family:var(--mono);margin-top:2px">עד ${p.statusTo}</div>` : '';
+        return `<div onclick="openStatusModal('${p.id}')" style="display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:7px 11px;cursor:pointer">
+          <span class="dot ${sd.dot}"></span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div>
+            <div style="font-size:10px;color:var(--text-dim)">${p.rank} · ${p.mainrole==='nahag'?'נהג':p.mainrole==='both'?'נהג/לוחם':'לוחם'}</div>
+            ${rangeInfo}
+          </div>
+          <span class="sp ${sd.cls}">${sd.l}</span>
+        </div>`;
+      }).join('');
+
+  // SHIFT CARDS
+  document.getElementById('today-shifts').innerHTML =
+    Object.entries(SHIFTS).map(([stype, sdef])=>renderShiftCard(viewDate, stype, sdef, isToday)).join('');
+}
+
+function renderShiftCard(date, stype, sdef, isToday){
+  const active = isShiftActive(stype, date);
+  const rolesHTML = ROLE_ORDER.map(role=>{
+    const a = getAssignment(date, stype, role);
+    const rdef = ROLES[role];
+    if(a){
+      const p = personnel.find(x=>x.id===a.personId);
+      return `<div class="role-slot">
+        <div class="role-type"><span class="role-icon">${rdef.icon}</span>${rdef.label}</div>
+        <div class="role-name">${p?p.name:a.personName}</div>
+        <div class="role-rank">${p?p.rank+' · '+STATUS[p.status].l:'—'}</div>
+        ${a.notes?`<div style="font-size:11px;color:var(--text-dim);margin-top:4px">${a.notes}</div>`:''}
+        <div class="role-actions">
+          <button class="btn btn-g btn-xs" onclick="openAssignModal('${date}','${stype}','${role}')">החלף</button>
+          <button class="btn btn-d btn-xs" onclick="removeAssignment('${a.id}')">הסר</button>
+        </div>
+      </div>`;
+    } else {
+      return `<div class="role-slot">
+        <div class="role-type"><span class="role-icon">${rdef.icon}</span>${rdef.label}</div>
+        <div class="role-empty">לא מאויש</div>
+        <button class="assign-btn" onclick="openAssignModal('${date}','${stype}','${role}')">＋ הקצה</button>
+      </div>`;
+    }
+  }).join('');
+
+  return `<div class="shift-card">
+    <div class="shift-card-header">
+      <div class="shift-label">
+        <span class="shift-pill ${sdef.cls}">${sdef.icon} ${sdef.label}</span>
+        <span class="shift-time">${sdef.start} – ${sdef.end}</span>
+      </div>
+      ${active?'<span class="shift-now-tag">⬤ פעיל עכשיו</span>':''}
+    </div>
+    <div class="roles-grid">${rolesHTML}</div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════
+//  PERSONNEL
+// ═══════════════════════════════════════════
+function renderPersonnel(){
+  const cnt={};
+  Object.keys(STATUS).forEach(k=>cnt[k]=0);
+  personnel.forEach(p=>cnt[p.status]=(cnt[p.status]||0)+1);
+
+  document.getElementById('pers-stats').innerHTML=Object.entries(STATUS).map(([k,v])=>`
+    <div class="stat"><div class="stat-l">${v.ic} ${v.l}</div><div class="stat-v">${cnt[k]||0}</div><div class="stat-s">אנשים</div></div>`).join('');
+
+  const grid=document.getElementById('soldier-grid');
+  if(personnel.length===0){
+    grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div class="ei">👥</div><p>אין אנשים ברשימה</p></div>`;
+    return;
+  }
+  const aCnt={};
+  assignments.forEach(a=>aCnt[a.personId]=(aCnt[a.personId]||0)+1);
+
+  const sorted = [...personnel].sort((a,b)=>daysOnBase(b)-daysOnBase(a));
+
+  grid.innerHTML=sorted.map(p=>{
+    const sd=STATUS[p.status]||STATUS.other;
+    const tot=aCnt[p.id]||0;
+    const fut=assignments.filter(a=>a.personId===p.id&&a.date>=todayStr()).length;
+    const ini=p.name.split(' ').map(w=>w[0]||'').join('').slice(0,2);
+    const roleLabel=p.mainrole==='nahag'?'🚗 נהג':p.mainrole==='both'?'🚗/⚔️ נהג+לוחם':'⚔️ לוחם';
+    const hasRange = p.status!=='base' && p.statusTo;
+    const rangeTag = hasRange
+      ? `<div style="font-size:11px;color:var(--text-dim);font-family:var(--mono);margin-top:4px">
+           ${p.statusFrom||'—'} → ${p.statusTo}${p.statusNote?' · '+p.statusNote:''}
+         </div>` : '';
+
+    // days on base bar
+    const days = daysOnBase(p);
+    const barColor = daysColor(days);
+    const barPct = Math.min(100, Math.round(days/21*100));
+    const daysBlock = p.status==='base' ? `
+      <div style="margin:10px 0 4px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+          <span style="font-size:11px;color:var(--text-dim)">ימים במוצב</span>
+          <span style="font-family:var(--mono);font-size:13px;font-weight:700;color:${barColor}">${days} ימים</span>
+        </div>
+        <div style="background:var(--surface2);border-radius:4px;height:7px;overflow:hidden">
+          <div style="background:${barColor};width:${barPct}%;height:100%;border-radius:4px;transition:width .4s"></div>
+        </div>
+        <div style="font-size:10px;color:${barColor};margin-top:3px;text-align:left">${daysLabel(days)}</div>
+      </div>` : '';
+
+    return `<div class="sc ${sd.cls}">
+      <div class="sc-top">
+        <div class="sc-id">
+          <div class="avatar">${ini}</div>
+          <div>
+            <div class="sc-name">${p.name}</div>
+            <div class="sc-rank">${p.rank}</div>
+          </div>
+        </div>
+        <button class="btn btn-d btn-xs" onclick="delPerson('${p.id}')">✕</button>
+      </div>
+      <div class="sc-meta">
+        <span class="sp ${sd.cls}">${sd.ic} ${sd.l}</span>
+        <span style="font-size:11px;color:var(--text-dim)">${roleLabel}</span>
+      </div>
+      ${rangeTag}
+      ${daysBlock}
+      ${p.phone?`<div style="font-family:var(--mono);font-size:11px;color:var(--text-dim);margin:8px 0"><a href="tel:${p.phone}" style="color:inherit;text-decoration:none">📞 ${p.phone}</a></div>`:''}
+      ${p.notes?`<div style="font-size:11px;color:var(--text-dim);background:var(--surface2);border-radius:3px;padding:4px 8px;border-right:2px solid var(--border2);margin-bottom:9px">${p.notes}</div>`:''}
+      <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
+        <button class="btn btn-s btn-sm" style="flex:1" onclick="openStatusModal('${p.id}')">
+          ${sd.ic} עדכן סטטוס
+        </button>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--text-dim);text-align:center;white-space:nowrap">${tot} סה"כ<br>${fut} קדימה</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openStatusModal(id){
+  const p=personnel.find(x=>x.id===id); if(!p) return;
+  const ini=p.name.split(' ').map(w=>w[0]||'').join('').slice(0,2);
+  document.getElementById('status-modal-avatar').textContent=ini;
+  document.getElementById('status-modal-name').textContent=p.name;
+  document.getElementById('status-modal-rank').textContent=p.rank;
+  document.getElementById('st-pid').value=id;
+  document.getElementById('st-status').value=p.status;
+  document.getElementById('st-from').value=p.statusFrom||todayStr();
+  document.getElementById('st-to').value=p.statusTo||'';
+  document.getElementById('st-note').value=p.statusNote||'';
+  document.getElementById('st-base-start').value=p.baseStart||todayStr();
+  document.getElementById('status-modal-title').textContent='סטטוס – '+p.name;
+
+  function togglePanels(val){
+    document.getElementById('st-range-wrap').style.display = val!=='base' ? 'block' : 'none';
+    document.getElementById('st-base-wrap').style.display  = val==='base'  ? 'block' : 'none';
+  }
+  togglePanels(p.status);
+  document.getElementById('st-status').onchange=function(){ togglePanels(this.value); };
+  document.getElementById('modal-status').style.display='flex';
+}
+
+function saveStatusRange(){
+  const id=document.getElementById('st-pid').value;
+  const status=document.getElementById('st-status').value;
+  const from=document.getElementById('st-from').value;
+  const to=document.getElementById('st-to').value;
+  const note=document.getElementById('st-note').value;
+  const p=personnel.find(x=>x.id===id); if(!p) return;
+
+  if(status!=='base' && !to){ toast('נא לבחור תאריך סיום','err'); return; }
+  if(status!=='base' && from && to && to<from){ toast('תאריך סיום לפני תאריך התחלה','err'); return; }
+
+  p.status=status;
+  p.statusFrom=status!=='base'?from:'';
+  p.statusTo=status!=='base'?to:'';
+  p.statusNote=status!=='base'?note:'';
+  // save arrival date when base
+  if(status==='base'){
+    const arrival=document.getElementById('st-base-start').value;
+    p.baseStart = arrival || todayStr();
+  }
+
+  save();
+  closeModal('modal-status');
+  renderPersonnel();
+  if(curPage==='today') renderToday();
+  if(curPage==='builder') renderBuilder();
+  updateCounts();
+
+  if(status==='sick') pushAlert('warn',`${p.name} – גימלים`,`${from} עד ${to}${note?' · '+note:''}`);
+  else if(status==='home') pushAlert('info',`${p.name} – בבית`,`${from} עד ${to}${note?' · '+note:''}`);
+
+  const rangeStr = status!=='base' ? ` (עד ${to})` : '';
+  toast(`${STATUS[status].l}${rangeStr}`,'ok');
+}
+
+function checkStatusExpiry(){
+  // auto-return to base if statusTo < today
+  const td=todayStr();
+  let changed=false;
+  personnel.forEach(p=>{
+    if(p.status!=='base' && p.statusTo && p.statusTo < td){
+      p.status='base'; p.statusFrom=''; p.statusTo=''; p.statusNote='';
+      p.baseStart = todayStr();
+      changed=true;
+      pushAlert('ok',`${p.name} חזר/ה למוצב`,'הסטטוס עודכן אוטומטית');
+    }
+  });
+  if(changed){ save(); if(curPage==='personnel') renderPersonnel(); if(curPage==='today') renderToday(); updateCounts(); }
+}
+
+function updateStatus(id,status){
+  // legacy – now opens the full modal instead
+  openStatusModal(id);
+}
+
+// ═══════════════════════════════════════════
+//  WEEK VIEW
+// ═══════════════════════════════════════════
+function changeWeek(d){ weekOff=d===0?0:weekOff+d; renderWeek(); }
+
+function renderWeek(){
+  const n=new Date(), dow=n.getDay();
+  const sun=new Date(n); sun.setDate(n.getDate()-dow+weekOff*7);
+  const days=Array.from({length:7},(_,i)=>{ const d=new Date(sun); d.setDate(sun.getDate()+i); return d; });
+  const td=todayStr();
+  document.getElementById('week-range').textContent =
+    days[0].getDate()+'/'+(days[0].getMonth()+1)+' – '+days[6].getDate()+'/'+(days[6].getMonth()+1)+'/'+days[6].getFullYear();
+
+  let h=`<div class="wg">`;
+  // header
+  h+=`<div class="wc wc-head"></div>`;
+  days.forEach((d,i)=>{
+    const ds=d.toISOString().slice(0,10);
+    h+=`<div class="wc wc-head ${ds===td?'wc-today':''}">${DAYS[i]}<div class="wc-num">${d.getDate()}/${d.getMonth()+1}</div></div>`;
+  });
+
+  // one row per shift type
+  Object.entries(SHIFTS).forEach(([stype,sdef])=>{
+    h+=`<div class="wc wc-head"><div style="font-size:11px">${sdef.icon} ${sdef.label}</div><div class="wc-num">${sdef.start}–${sdef.end}</div></div>`;
+    days.forEach(d=>{
+      const ds=d.toISOString().slice(0,10);
+      h+=`<div class="wc ${ds===td?'wc-today':''}">`;
+      ROLE_ORDER.forEach(role=>{
+        const a=getAssignment(ds,stype,role);
+        const rdef=ROLES[role];
+        if(a){
+          const p=personnel.find(x=>x.id===a.personId);
+          h+=`<div class="wc-slot filled" onclick="openAssignModal('${ds}','${stype}','${role}')">
+            <div class="wc-role-type">${rdef.icon} ${rdef.label}</div>
+            <div style="font-weight:600">${p?p.name:a.personName}</div>
+          </div>`;
+        } else {
+          h+=`<div class="wc-slot empty-slot" onclick="openAssignModal('${ds}','${stype}','${role}')">${rdef.icon} ${rdef.label}…</div>`;
+        }
+      });
+      h+=`</div>`;
+    });
+  });
+  h+=`</div>`;
+  document.getElementById('week-grid').innerHTML=h;
+}
+
+// ═══════════════════════════════════════════
+//  HISTORY TABLE
+// ═══════════════════════════════════════════
+function renderHistory(){
+  const fp=document.getElementById('f-person');
+  const fpv=fp.value;
+  fp.innerHTML='<option value="">הכל</option>'+
+    personnel.map(p=>`<option value="${p.id}" ${p.id===fpv?'selected':''}>${p.name}</option>`).join('');
+  fp.value=fpv;
+
+  const from=document.getElementById('f-from').value;
+  const to  =document.getElementById('f-to').value;
+  const ftype=document.getElementById('f-type').value;
+  const frole=document.getElementById('f-role').value;
+  const fpers=fp.value;
+
+  let fi=[...assignments].sort((a,b)=>a.date.localeCompare(b.date)||(a.shift.localeCompare(b.shift))|(ROLES[a.role].order-ROLES[b.role].order));
+  if(from)  fi=fi.filter(a=>a.date>=from);
+  if(to)    fi=fi.filter(a=>a.date<=to);
+  if(ftype) fi=fi.filter(a=>a.shift===ftype);
+  if(frole) fi=fi.filter(a=>a.role===frole);
+  if(fpers) fi=fi.filter(a=>a.personId===fpers);
+
+  const tb=document.getElementById('hist-tbody');
+  if(fi.length===0){ tb.innerHTML=`<tr><td colspan="6" style="text-align:center;padding:36px;color:var(--text-dim)">אין נתונים</td></tr>`; return; }
+
+  tb.innerHTML=fi.map(a=>{
+    const sd=SHIFTS[a.shift]||{};
+    const rd=ROLES[a.role]||{};
+    const p=personnel.find(x=>x.id===a.personId);
+    return `<tr>
+      <td><span style="font-family:var(--mono);font-size:12px">${fmtDate(a.date)}</span></td>
+      <td><span style="font-size:13px">${sd.icon||''} ${sd.label||a.shift}</span></td>
+      <td><span class="tag">${rd.icon||''} ${rd.label||a.role}</span></td>
+      <td><strong>${p?p.name:a.personName}</strong></td>
+      <td style="color:var(--text-dim);font-size:12px">${a.notes||'—'}</td>
+      <td><div style="display:flex;gap:5px">
+        <button class="btn btn-g btn-xs" onclick="openAssignModal('${a.date}','${a.shift}','${a.role}')">עריכה</button>
+        <button class="btn btn-d btn-xs" onclick="removeAssignment('${a.id}')">מחק</button>
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+function clearFilters(){ ['f-from','f-to','f-type','f-role'].forEach(i=>document.getElementById(i).value=''); document.getElementById('f-person').value=''; renderHistory(); }
+
+// ═══════════════════════════════════════════
+//  ALERTS
+// ═══════════════════════════════════════════
+function pushAlert(type,title,desc=''){
+  alerts.unshift({id:uid(),type,title,desc,time:new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'}),dismissed:false});
+  save(); updateCounts();
+  if(curPage==='alerts') renderAlerts();
+}
+function renderAlerts(){
+  autoAlerts();
+  const vis=alerts.filter(a=>!a.dismissed);
+  const el=document.getElementById('alerts-list');
+  const ic={warn:'⚠️',info:'ℹ️',ok:'✅'};
+  if(vis.length===0){ el.innerHTML=`<div class="empty"><div class="ei">✅</div><p>אין התראות פעילות</p></div>`; return; }
+  el.innerHTML=vis.map(a=>`
+    <div class="al-item al-${a.type}">
+      <div class="al-icon">${ic[a.type]||'ℹ️'}</div>
+      <div class="al-body"><div class="al-title">${a.title}</div>${a.desc?`<div class="al-desc">${a.desc}</div>`:''}</div>
+      <div class="al-time">${a.time}</div>
+      <button class="al-x" onclick="dismissAlert('${a.id}')">×</button>
+    </div>`).join('');
+}
+function autoAlerts(){
+  const td=todayStr();
+  // check unfilled slots for today
+  const missing=[];
+  Object.entries(SHIFTS).forEach(([stype,sdef])=>{
+    ROLE_ORDER.forEach(role=>{
+      if(!getAssignment(td,stype,role))
+        missing.push(`${sdef.label} – ${ROLES[role].label}`);
+    });
+  });
+  if(missing.length>0 && !alerts.some(a=>a.title.startsWith('תפקידים לא מאוישים')&&!a.dismissed)){
+    pushAlert('warn','תפקידים לא מאוישים להיום',missing.join(', '));
+  }
+  const sick=personnel.filter(p=>p.status==='sick');
+  if(sick.length>0 && !alerts.some(a=>a.title.startsWith('גימלים:')&&!a.dismissed))
+    pushAlert('info','גימלים: '+sick.map(p=>p.name).join(', '),'לוחמים שאינם זמינים');
+
+  // alert for soldiers overdue for leave (>14 days on base)
+  const overdue=personnel.filter(p=>p.status==='base' && daysOnBase(p)>14);
+  if(overdue.length>0 && !alerts.some(a=>a.title.startsWith('זקוקים לחופש')&&!a.dismissed))
+    pushAlert('warn','זקוקים לחופש: '+overdue.map(p=>p.name+' ('+daysOnBase(p)+' ימים)').join(', '),'מעל 14 ימים רצופים במוצב');
+}
+function dismissAlert(id){ alerts=alerts.map(a=>a.id===id?{...a,dismissed:true}:a); save(); renderAlerts(); updateCounts(); }
+function dismissAll(){ alerts=alerts.map(a=>({...a,dismissed:true})); save(); renderAlerts(); updateCounts(); }
+function addManualAlert(){
+  const t=document.getElementById('al-title').value.trim();
+  if(!t){ toast('נא להזין כותרת','err'); return; }
+  pushAlert(document.getElementById('al-type').value,t);
+  document.getElementById('al-title').value='';
+  toast('התראה נוספה','ok');
+}
+
+// ═══════════════════════════════════════════
+//  ASSIGN MODAL + RECOMMENDATIONS
+// ═══════════════════════════════════════════
+function scorePersonForSlot(p, date, shiftType){
+  // Lower score = better candidate
+  const td = todayStr();
+
+  // Count shifts in the last 7 days (heavier weight for same shift type)
+  const weekAgo = new Date(date+'T00:00');
+  weekAgo.setDate(weekAgo.getDate()-7);
+  const weekAgoStr = weekAgo.toISOString().slice(0,10);
+
+  const recentAll = assignments.filter(a=>
+    a.personId===p.id && a.date>=weekAgoStr && a.date<=date
+  );
+  const recentSame = recentAll.filter(a=>a.shift===shiftType);
+
+  // Penalty: each recent shift = +2, same-type shift = +3
+  let score = recentAll.length * 2 + recentSame.length * 3;
+
+  // Bonus: night shift yesterday → +4 (rest needed)
+  const yesterday = new Date(date+'T00:00');
+  yesterday.setDate(yesterday.getDate()-1);
+  const yStr = yesterday.toISOString().slice(0,10);
+  if(assignments.some(a=>a.personId===p.id && a.date===yStr && a.shift==='layla')) score += 4;
+
+  // Bonus: already assigned elsewhere this same day → +5
+  if(assignments.some(a=>a.personId===p.id && a.date===date)) score += 5;
+
+  // Total shifts ever (fairness tiebreaker)
+  const total = assignments.filter(a=>a.personId===p.id).length;
+  score += total * 0.1;
+
+  return { score, recentAll:recentAll.length, recentSame:recentSame.length };
+}
+
+function renderRecommendations(date, shiftType, existingPersonId){
+  const avail = personnel.filter(p=> isAvailableOnDate(p, date));
+  if(avail.length===0){
+    document.getElementById('rec-list').innerHTML=
+      '<div style="font-size:12px;color:var(--text-dim)">אין לוחמים זמינים</div>';
+    return;
+  }
+
+  // Score and sort
+  const scored = avail.map(p=>({
+    p,
+    ...scorePersonForSlot(p, date, shiftType)
+  })).sort((a,b)=>a.score-b.score);
+
+  const top = scored.slice(0,3);
+
+  document.getElementById('rec-list').innerHTML = top.map((item,i)=>{
+    const {p, recentAll, recentSame} = item;
+    const medals = ['🥇','🥈','🥉'];
+    const isSelected = p.id === existingPersonId;
+    const totalShifts = assignments.filter(a=>a.personId===p.id).length;
+    const lastShiftDate = assignments
+      .filter(a=>a.personId===p.id)
+      .sort((a,b)=>b.date.localeCompare(a.date))[0]?.date;
+    const daysSinceLast = lastShiftDate
+      ? Math.floor((new Date(date)-new Date(lastShiftDate+'T00:00'))/86400000)
+      : 999;
+
+    const detail = recentAll===0
+      ? 'לא שובץ השבוע'
+      : `${recentAll} משמרות ב-7 ימים אחרונים${recentSame>0?' ('+recentSame+' '+SHIFTS[shiftType].label+')':''}`;
+
+    const restWarn = daysSinceLast===0
+      ? '<span style="color:var(--warn);font-size:10px"> · שובץ היום</span>'
+      : daysSinceLast===1
+      ? '<span style="color:var(--warn);font-size:10px"> · שובץ אתמול</span>'
+      : '';
+
+    return `<div onclick="pickRec('${p.id}')"
+      style="display:flex;align-items:center;gap:10px;background:${isSelected?'rgba(0,229,160,.1)':'var(--surface2)'};
+      border:1px solid ${isSelected?'rgba(0,229,160,.4)':'var(--border)'};
+      border-radius:var(--r);padding:10px 12px;margin-bottom:7px;cursor:pointer;transition:border-color .2s">
+      <div style="font-size:20px;flex-shrink:0">${medals[i]}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:14px;font-weight:700">${p.name} <span style="font-size:11px;color:var(--text-dim);font-weight:400">${p.rank}</span>${restWarn}</div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:2px">${detail} · סה"כ ${totalShifts} משמרות</div>
+      </div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--accent);flex-shrink:0">בחר</div>
+    </div>`;
+  }).join('');
+}
+
+function pickRec(personId){
+  document.getElementById('a-person').value = personId;
+  // highlight
+  document.querySelectorAll('#rec-list > div').forEach(el=>{
+    el.style.background='var(--surface2)';
+    el.style.borderColor='var(--border)';
+  });
+  event.currentTarget.style.background='rgba(0,229,160,.1)';
+  event.currentTarget.style.borderColor='rgba(0,229,160,.4)';
+}
+
+function openAssignModal(date, shiftType, role){
+  document.getElementById('a-date').value  = date  || todayStr();
+  document.getElementById('a-shift').value = shiftType || 'layla';
+  document.getElementById('a-role').value  = role  || 'nahag';
+  document.getElementById('a-notes').value = '';
+  document.getElementById('a-id').value    = '';
+
+  const existing = date && shiftType && role ? getAssignment(date,shiftType,role) : null;
+  if(existing){
+    document.getElementById('a-notes').value = existing.notes||'';
+    document.getElementById('a-id').value    = existing.id;
+    populatePersonSel(existing.personId);
+    document.getElementById('assign-title').textContent = `החלפת ${ROLES[role]?.label}`;
+    renderRecommendations(date||todayStr(), shiftType||'yom', existing.personId);
+  } else {
+    populatePersonSel('');
+    const roleLabel = role ? ROLES[role]?.label : 'תפקיד';
+    document.getElementById('assign-title').textContent = `הקצאת ${roleLabel}`;
+    renderRecommendations(date||todayStr(), shiftType||'yom', '');
+  }
+  document.getElementById('modal-assign').style.display='flex';
+}
+
+function populatePersonSel(selId){
+  const date = document.getElementById('a-date').value || todayStr();
+  const avail  = personnel.filter(p=> isAvailableOnDate(p, date));
+  const unavail= personnel.filter(p=>!isAvailableOnDate(p, date));
+  let html = '<option value="">-- בחר/י --</option>';
+  if(avail.length)
+    html += '<optgroup label="✅ זמינים בתאריך זה">'+
+      avail.map(p=>`<option value="${p.id}" ${p.id===selId?'selected':''}>${p.name}</option>`).join('')+
+      '</optgroup>';
+  if(unavail.length)
+    html += '<optgroup label="⚠️ לא זמינים בתאריך זה">'+
+      unavail.map(p=>{
+        const st=getStatusOnDate(p,date);
+        return `<option value="${p.id}" ${p.id===selId?'selected':''}>${STATUS[st]?.ic||'⚠️'} ${p.name} – ${STATUS[st]?.l||st}</option>`;
+      }).join('')+
+      '</optgroup>';
+  document.getElementById('a-person').innerHTML=html;
+}
+
+function saveAssignment(){
+  const date  =document.getElementById('a-date').value;
+  const shift =document.getElementById('a-shift').value;
+  const role  =document.getElementById('a-role').value;
+  const pid   =document.getElementById('a-person').value;
+  const notes =document.getElementById('a-notes').value;
+  const eid   =document.getElementById('a-id').value;
+
+  if(!date||!pid){ toast('נא למלא תאריך ושם','err'); return; }
+  const p=personnel.find(x=>x.id===pid);
+  if(p && !isAvailableOnDate(p, date)){
+    const st=getStatusOnDate(p,date);
+    if(!confirm(`${p.name} יהיה/תהיה "${STATUS[st]?.l}" בתאריך ${date} – לשבץ בכל זאת?`)) return;
+  }
+
+  // Remove any existing for this slot
+  assignments=assignments.filter(a=>!(a.date===date&&a.shift===shift&&a.role===role));
+
+  assignments.push({id:eid||uid(),date,shift,role,personId:pid,personName:p?.name||'',notes});
+  save(); closeModal('modal-assign'); refresh();
+  toast('הוקצה בהצלחה','ok');
+}
+
+function removeAssignment(id){
+  if(!confirm('להסיר הקצאה זו?')) return;
+  assignments=assignments.filter(a=>a.id!==id);
+  save(); refresh(); toast('הוסר');
+}
+
+// ═══════════════════════════════════════════
+//  PERSON MODAL
+// ═══════════════════════════════════════════
+function openPersonModal(){
+  ['p-name','p-phone','p-notes'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('p-rank').value='טוראי';
+  document.getElementById('p-mainrole').value='lochem';
+  document.getElementById('modal-person').style.display='flex';
+}
+function savePerson(){
+  const name=document.getElementById('p-name').value.trim();
+  if(!name){ toast('נא להזין שם','err'); return; }
+  personnel.push({id:uid(),name,
+    rank:document.getElementById('p-rank').value,
+    mainrole:document.getElementById('p-mainrole').value,
+    phone:document.getElementById('p-phone').value,
+    notes:document.getElementById('p-notes').value,
+    status:'base',
+    baseStart: todayStr()});
+  save(); closeModal('modal-person'); refresh(); toast('נוסף','ok');
+}
+function delPerson(id){
+  const p=personnel.find(x=>x.id===id);
+  if(!confirm(`למחוק את ${p?.name}?`)) return;
+  personnel=personnel.filter(x=>x.id!==id);
+  assignments=assignments.filter(a=>a.personId!==id);
+  save(); refresh(); toast('נמחק','ok');
+}
+
+// ── DAYS ON BASE TRACKING ──
+function daysOnBase(p){
+  if(p.status !== 'base' || !p.baseStart) return 0;
+  const start = new Date(p.baseStart + 'T00:00');
+  const today = new Date(todayStr() + 'T00:00');
+  const diff = Math.floor((today - start) / 86400000);
+  return Math.max(0, diff);
+}
+
+function daysColor(d){
+  if(d <= 7)  return 'var(--accent)';
+  if(d <= 14) return 'var(--warn)';
+  return 'var(--danger)';
+}
+
+function daysLabel(d){
+  if(d <= 7)  return 'תקין';
+  if(d <= 14) return 'שקול חופש';
+  return '⚠️ זקוק לחופש';
+}
+
+
+function closeModal(id){ document.getElementById(id).style.display='none'; }
+function ovClose(e,id){ if(e.target===document.getElementById(id)) closeModal(id); }
+function refresh(){ updateCounts(); renderPage(curPage); }
+
+let _tt;
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast show'+(type?' t-'+type:'');
+  clearTimeout(_tt); _tt=setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+// ═══════════════════════════════════════════
+//  WEEKLY BUILDER
+// ═══════════════════════════════════════════
+let builderWeekOff = 0;
+
+function getBuilderDays(){
+  const n=new Date(), dow=n.getDay();
+  const sun=new Date(n); sun.setDate(n.getDate()-dow+builderWeekOff*7);
+  return Array.from({length:7},(_,i)=>{ const d=new Date(sun); d.setDate(sun.getDate()+i); return d; });
+}
+
+function changeBuilderWeek(d){ builderWeekOff=d===0?0:builderWeekOff+d; renderBuilder(); }
+
+function renderBuilder(){
+  const days=getBuilderDays();
+  const td=todayStr();
+  const d0=days[0], d6=days[6];
+  const rangeStr=d0.getDate()+'/'+(d0.getMonth()+1)+' – '+d6.getDate()+'/'+(d6.getMonth()+1)+'/'+d6.getFullYear();
+  document.getElementById('builder-range').textContent=rangeStr;
+
+  // progress
+  const total=7*2*3; // days × shifts × roles
+  let filled=0;
+  days.forEach(d=>{ const ds=d.toISOString().slice(0,10);
+    Object.keys(SHIFTS).forEach(st=>ROLE_ORDER.forEach(r=>{ if(getAssignment(ds,st,r)) filled++; }));
+  });
+  document.getElementById('builder-progress-txt').textContent=filled+'/'+total;
+  document.getElementById('builder-progress-bar').style.width=Math.round(filled/total*100)+'%';
+
+  // build HTML
+  const html=days.map(d=>{
+    const ds=d.toISOString().slice(0,10);
+    const isT=ds===td;
+    const dayFilled=Object.keys(SHIFTS).reduce((s,st)=>s+ROLE_ORDER.filter(r=>getAssignment(ds,st,r)).length,0);
+
+    const shiftsHTML=Object.entries(SHIFTS).map(([stype,sdef])=>`
+      <div class="builder-shift">
+        <div class="builder-shift-title">
+          <span style="font-size:16px">${sdef.icon}</span>
+          <span style="font-weight:700;font-size:13px">${sdef.label}</span>
+          <span style="font-family:var(--mono);font-size:10px;color:var(--text-dim)">${sdef.start}–${sdef.end}</span>
+        </div>
+        <div class="builder-roles">
+          ${ROLE_ORDER.map(role=>{
+            const rdef=ROLES[role];
+            const a=getAssignment(ds,stype,role);
+            const selVal=a?a.personId:'';
+            // detect conflict: same person assigned twice same day same shift?
+            const conflict=selVal && ROLE_ORDER.filter(r=>r!==role).some(r2=>{
+              const a2=getAssignment(ds,stype,r2);
+              return a2&&a2.personId===selVal;
+            });
+            // compute recommendations for this slot
+            const avail = personnel.filter(p=> isAvailableOnDate(p, ds));
+            const scored = avail.map(p=>({id:p.id, score:scorePersonForSlot(p,ds,stype).score}))
+              .sort((a,b)=>a.score-b.score);
+            const topId = scored[0]?.id;
+            const top2Id = scored[1]?.id;
+
+            // warn if assigned person is unavailable on this date
+            const assignedPerson = selVal ? personnel.find(x=>x.id===selVal) : null;
+            const unavailable = assignedPerson && !isAvailableOnDate(assignedPerson, ds);
+            const unavailStatus = assignedPerson ? getStatusOnDate(assignedPerson, ds) : 'base';
+            const selClass = `builder-sel ${conflict?'conflict':unavailable?'conflict':selVal?'filled':''}`;
+            const warningTag = unavailable
+              ? `<span title="${assignedPerson.name} – ${STATUS[unavailStatus]?.l}" style="font-size:13px;cursor:default">${STATUS[unavailStatus]?.ic||'⚠️'}</span>`
+              : conflict ? `<span title="כפילות באותה משמרת" style="font-size:13px">⚠️</span>` : '';
+
+            return `<div class="builder-role-row">
+              <span class="builder-role-lbl">${rdef.icon} ${rdef.label}</span>
+              <select class="${selClass}"
+                onchange="builderAssign('${ds}','${stype}','${role}',this.value,this)">
+                <option value="">— לא מאויש —</option>
+                <optgroup label="✅ זמינים בתאריך זה">
+                  ${personnel.filter(p=> isAvailableOnDate(p, ds)).map(p=>{
+                    const star = p.id===topId?'⭐ ':p.id===top2Id?'🌟 ':'';
+                    return `<option value="${p.id}" ${p.id===selVal?'selected':''}>${star}${p.name}</option>`;
+                  }).join('')}
+                </optgroup>
+                <optgroup label="⚠️ לא זמינים בתאריך זה">
+                  ${personnel.filter(p=>!isAvailableOnDate(p, ds)).map(p=>{
+                    const st=getStatusOnDate(p,ds);
+                    return `<option value="${p.id}" ${p.id===selVal?'selected':''}>${STATUS[st]?.ic||'⚠️'} ${p.name} – ${STATUS[st]?.l||''}</option>`;
+                  }).join('')}
+                </optgroup>
+              </select>
+              ${warningTag}
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`).join('');
+
+    return `<div class="builder-day">
+      <div class="builder-day-hdr">
+        <div>
+          <div class="builder-day-name" style="${isT?'color:var(--accent)':''}">${DAYS[d.getDay()]}${isT?' ← היום':''}</div>
+          <div class="builder-day-date">${d.getDate()} ${MONS[d.getMonth()]} ${d.getFullYear()}</div>
+        </div>
+        <span class="builder-day-prog">${dayFilled}/6 תפקידים</span>
+      </div>
+      <div class="builder-shifts">${shiftsHTML}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('builder-grid').innerHTML=html;
+}
+
+function builderAssign(date, shift, role, personId, selEl){
+  // Remove existing
+  assignments=assignments.filter(a=>!(a.date===date&&a.shift===shift&&a.role===role));
+  if(personId){
+    const p=personnel.find(x=>x.id===personId);
+    assignments.push({id:uid(),date,shift,role,personId,personName:p?.name||'',notes:''});
+    selEl.classList.add('filled');
+  } else {
+    selEl.classList.remove('filled');
+  }
+  save();
+  // re-render to update progress & conflicts
+  renderBuilder();
+  updateCounts();
+}
+
+function clearWeekAssignments(){
+  const days=getBuilderDays();
+  const datesSet=new Set(days.map(d=>d.toISOString().slice(0,10)));
+  if(!confirm('למחוק את כל הקצאות השבוע?')) return;
+  assignments=assignments.filter(a=>!datesSet.has(a.date));
+  save(); renderBuilder(); toast('שבוע נוקה');
+}
+
+// ═══════════════════════════════════════════
+//  DISTRIBUTE
+// ═══════════════════════════════════════════
+function openDistribute(){
+  const days=getBuilderDays();
+  const d0=days[0], d6=days[6];
+  document.getElementById('dist-range-label').textContent=
+    d0.getDate()+'/'+(d0.getMonth()+1)+' – '+d6.getDate()+'/'+(d6.getMonth()+1)+'/'+d6.getFullYear();
+
+  document.getElementById('wa-preview').value = buildWAText(days);
+  document.getElementById('modal-distribute').style.display='flex';
+}
+
+function buildWAText(days){
+  const d0=days[0], d6=days[6];
+  const rangeStr=d0.getDate()+'/'+(d0.getMonth()+1)+' – '+d6.getDate()+'/'+(d6.getMonth()+1)+'/'+d6.getFullYear();
+
+  let txt='🪖 *סידור חפ"ק מפ ב\' – גדוד 419*\n';
+  txt+='📆 '+rangeStr+'\n\n';
+
+  days.forEach(d=>{
+    const ds=d.toISOString().slice(0,10);
+    txt+='*'+DAYS[d.getDay()]+' '+d.getDate()+'/'+(d.getMonth()+1)+'*\n';
+
+    Object.entries(SHIFTS).forEach(([stype,sdef])=>{
+      txt+=sdef.icon+' '+sdef.label+':\n';
+      ROLE_ORDER.forEach(role=>{
+        const rdef=ROLES[role];
+        const a=getAssignment(ds,stype,role);
+        const p=a?personnel.find(x=>x.id===a.personId):null;
+        const name=p?p.name:(a?a.personName:'⚠️ לא מאויש');
+        txt+='  '+rdef.label+' – '+name+'\n';
+      });
+    });
+    txt+='\n';
+  });
+
+  return txt.trimEnd();
+}
+
+function copyWA(){
+  const txt=document.getElementById('wa-preview').value;
+  navigator.clipboard.writeText(txt).then(()=>toast('הועתק לוואטסאפ! 📋','ok')).catch(()=>{
+    document.getElementById('wa-preview').select();
+    document.execCommand('copy');
+    toast('הועתק!','ok');
+  });
+}
+
+function printSchedule(){
+  const days = getBuilderDays();
+  const d0 = days[0], d6 = days[6];
+  const rangeStr = d0.getDate()+'/'+(d0.getMonth()+1)+' – '+d6.getDate()+'/'+(d6.getMonth()+1)+'/'+d6.getFullYear();
+  const printDate = new Date().toLocaleDateString('he-IL',{day:'numeric',month:'long',year:'numeric'});
+
+  // Stats
+  const totalSlots = 7 * 2 * 3;
+  let filledSlots = 0;
+  days.forEach(d => {
+    const ds = d.toISOString().slice(0,10);
+    Object.keys(SHIFTS).forEach(st => ROLE_ORDER.forEach(r => { if(getAssignment(ds,st,r)) filledSlots++; }));
+  });
+  const pct = Math.round(filledSlots/totalSlots*100);
+
+  // Column headers – one per day
+  const dayHeaders = days.map(d =>
+    `<th style="text-align:center;background:#0f172a;color:#fff;font-weight:700;font-size:12px;padding:8px 6px;min-width:90px;border-left:1px solid #1e293b">
+      <div>${DAYS[d.getDay()]}</div>
+      <div style="font-size:10px;font-weight:400;opacity:.7;margin-top:2px">${d.getDate()}/${d.getMonth()+1}</div>
+    </th>`
+  ).join('');
+
+  // Build rows: one row per (shift × role)
+  let bodyHTML = '';
+  Object.entries(SHIFTS).forEach(([stype, sdef], si) => {
+    const shiftColor = stype==='yom' ? '#92400e' : '#1e3a8a';
+    const shiftBg    = stype==='yom' ? '#fef3c7' : '#dbeafe';
+    const shiftBorder= stype==='yom' ? '#f59e0b' : '#3b82f6';
+
+    ROLE_ORDER.forEach((role, ri) => {
+      const rdef = ROLES[role];
+      const isFirstRow = si===0 && ri===0;
+      const showShiftLabel = ri===0;
+
+      bodyHTML += `<tr>`;
+
+      // Shift label cell (rowspan 3 per shift)
+      if(showShiftLabel){
+        bodyHTML += `<td rowspan="3" style="background:${shiftBg};color:${shiftColor};font-weight:800;font-size:12px;text-align:center;vertical-align:middle;border-right:3px solid ${shiftBorder};padding:8px 6px;white-space:nowrap">
+          ${sdef.icon} ${sdef.label}<br>
+          <span style="font-size:9px;font-weight:400;opacity:.75">${sdef.start}–${sdef.end}</span>
+        </td>`;
+      }
+
+      // Role label cell
+      bodyHTML += `<td style="font-size:11px;font-weight:600;color:#475569;padding:7px 9px;background:#f8fafc;white-space:nowrap;border-left:1px solid #e2e8f0">${rdef.label}</td>`;
+
+      // One cell per day
+      days.forEach(d => {
+        const ds = d.toISOString().slice(0,10);
+        const a  = getAssignment(ds, stype, role);
+        const p  = a ? personnel.find(x => x.id === a.personId) : null;
+        const name = p ? p.name : (a ? a.personName : null);
+        bodyHTML += `<td style="text-align:center;padding:7px 5px;font-size:12px;border-left:1px solid #e2e8f0;${
+          name
+            ? 'font-weight:700;color:#0f172a'
+            : 'color:#ef4444;font-style:italic'
+        }">${name || '—'}</td>`;
+      });
+
+      bodyHTML += `</tr>`;
+    });
+
+    // Separator between shifts
+    bodyHTML += `<tr><td colspan="${2+7}" style="padding:0;height:3px;background:${shiftBorder};border:none"></td></tr>`;
+  });
+
+  const win = window.open('', '_blank', 'width=1100,height=700');
+  win.document.write(`<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>סידור חפ"ק מפ – ${rangeStr}</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Arial Hebrew','Arial',sans-serif;background:#fff;color:#111;direction:rtl;padding:20px 24px;font-size:13px;}
+
+  .page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:3px solid #0f172a;}
+  .logo-block{display:flex;align-items:center;gap:12px;}
+  .logo-sq{width:40px;height:40px;background:#0f172a;color:#00e5a0;font-weight:900;font-size:11px;display:flex;align-items:center;justify-content:center;border-radius:4px;}
+  .org-name{font-size:17px;font-weight:800;color:#0f172a;}
+  .org-sub{font-size:10px;color:#64748b;margin-top:2px;}
+  .range-badge{background:#0f172a;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:4px;display:inline-block;margin-bottom:4px;}
+  .print-date{font-size:10px;color:#94a3b8;text-align:left;}
+
+  .stats-bar{display:flex;gap:10px;margin-bottom:14px;}
+  .stat-box{flex:1;border:1px solid #e2e8f0;border-radius:5px;padding:8px 12px;text-align:center;}
+  .stat-box .sv{font-size:20px;font-weight:900;color:#0f172a;}
+  .stat-box .sl{font-size:9px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+  .stat-box.hi{border-color:#00c88a;background:#f0fdf4;}.stat-box.hi .sv{color:#15803d;}
+
+  table{width:100%;border-collapse:collapse;border:1px solid #cbd5e1;}
+  thead tr th:first-child{background:#0f172a;color:#fff;font-size:11px;padding:8px 9px;text-align:center;}
+
+  .footer{margin-top:12px;display:flex;justify-content:space-between;font-size:9px;color:#94a3b8;padding-top:8px;border-top:1px solid #e2e8f0;}
+  .legend{display:flex;gap:12px;align-items:center;}
+  .leg-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-left:4px;}
+
+  .no-print{display:flex;gap:10px;margin-bottom:14px;align-items:center;}
+  .print-btn{background:#0f172a;color:#fff;border:none;padding:9px 20px;font-size:13px;font-weight:700;border-radius:5px;cursor:pointer;}
+  .pdf-note{font-size:11px;color:#64748b;}
+
+  @media print{
+    .no-print{display:none!important;}
+    body{padding:8px 10px;}
+    @page{size:A4 landscape;margin:10mm;}
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  <button class="print-btn" onclick="window.print()">🖨️ הדפס / שמור כ-PDF</button>
+  <span class="pdf-note">מופיע בפורמט <strong>לרוחב (Landscape)</strong> – בחר "שמור כ-PDF" כיעד</span>
+</div>
+
+<div class="page-header">
+  <div class="logo-block">
+    <div class="logo-sq">חפ"ק</div>
+    <div>
+      <div class="org-name">חפ"ק מפ ב' – גדוד 419</div>
+      <div class="org-sub">WEEKLY DUTY ROSTER</div>
+    </div>
+  </div>
+  <div>
+    <div class="range-badge">📅 ${rangeStr}</div>
+    <div class="print-date">הופק: ${printDate}</div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-box hi"><div class="sv">${filledSlots}/${totalSlots}</div><div class="sl">מאויש</div></div>
+  <div class="stat-box"><div class="sv">${pct}%</div><div class="sl">אחוז מילוי</div></div>
+  <div class="stat-box"><div class="sv">${totalSlots-filledSlots}</div><div class="sl">חסרים</div></div>
+  <div class="stat-box"><div class="sv">${personnel.length}</div><div class="sl">כוח אדם</div></div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="background:#0f172a;color:#fff;font-size:11px;padding:8px 9px;text-align:center;border-left:1px solid #1e293b">משמרת</th>
+      <th style="background:#0f172a;color:#fff;font-size:11px;padding:8px 9px;text-align:center;border-left:1px solid #1e293b">תפקיד</th>
+      ${dayHeaders}
+    </tr>
+  </thead>
+  <tbody>${bodyHTML}</tbody>
+</table>
+
+<div class="footer">
+  <div class="legend">
+    <span><span class="leg-dot" style="background:#f59e0b"></span>משמרת יום 06:00–18:00</span>
+    <span><span class="leg-dot" style="background:#3b82f6"></span>משמרת לילה 18:00–06:00</span>
+    <span><span class="leg-dot" style="background:#ef4444"></span>לא מאויש</span>
+  </div>
+  <div>חפ"ק מפ ב' גדוד 419 © ${new Date().getFullYear()}</div>
+</div>
+
+</body></html>`);
+  win.document.close();
+}
+
+// ═══════════════════════════════════════════
+//  DAILY REPORT (דוח נוכחות – שלישות גדוד)
+// ═══════════════════════════════════════════
+function switchReportTab(tab){
+  document.getElementById('rpanel-report').style.display  = tab==='report'  ? 'block' : 'none';
+  document.getElementById('rpanel-manage').style.display  = tab==='manage'  ? 'block' : 'none';
+  document.getElementById('rtab-report').style.borderBottomColor  = tab==='report'  ? 'var(--accent)' : 'transparent';
+  document.getElementById('rtab-manage').style.borderBottomColor  = tab==='manage'  ? 'var(--accent)' : 'transparent';
+  document.getElementById('rtab-report').style.color  = tab==='report'  ? 'var(--accent)' : 'var(--text-dim)';
+  document.getElementById('rtab-manage').style.color  = tab==='manage'  ? 'var(--accent)' : 'var(--text-dim)';
+  if(tab==='manage') renderReportPeople();
+}
+
+// ── Report-only personnel ──
+function addReportPerson(){
+  const name = document.getElementById('rp-name').value.trim();
+  if(!name){ toast('נא להזין שם','err'); return; }
+  reportPeople.push({ id:uid(), name, role:document.getElementById('rp-role').value.trim(), status:'base' });
+  document.getElementById('rp-name').value='';
+  document.getElementById('rp-role').value='';
+  save(); renderReportPeople(); refreshReport();
+}
+
+function renderReportPeople(){
+  const el = document.getElementById('report-people-list');
+  if(reportPeople.length===0){
+    el.innerHTML=`<div style="color:var(--text-dim);font-size:13px;padding:12px 0">אין אנשים ברשימת הדיווח עדיין</div>`;
+    return;
+  }
+  el.innerHTML = reportPeople.map(p=>`
+    <div style="display:flex;align-items:center;gap:10px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:10px 13px;margin-bottom:8px">
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:700">${p.name}${p.role?' <span style="font-size:11px;color:var(--text-dim);font-weight:400">(${p.role})</span>':''}</div>
+      </div>
+      <select onchange="updateReportStatus('${p.id}',this.value)"
+        style="background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:13px;padding:6px 10px;border-radius:var(--r);min-height:40px;cursor:pointer">
+        <option value="base"  ${p.status==='base' ?'selected':''}>✅ נוכח</option>
+        <option value="home"  ${p.status==='home' ?'selected':''}>🔵 בבית</option>
+        <option value="sick"  ${p.status==='sick' ?'selected':''}>🟡 גימלים</option>
+        <option value="other" ${p.status==='other'?'selected':''}>🟣 אחר</option>
+      </select>
+      <button class="btn btn-d btn-xs" onclick="removeReportPerson('${p.id}')">✕</button>
+    </div>`).join('');
+}
+
+function updateReportStatus(id, status){
+  const p=reportPeople.find(x=>x.id===id); if(!p) return;
+  p.status=status; save(); refreshReport();
+}
+
+function removeReportPerson(id){
+  reportPeople=reportPeople.filter(x=>x.id!==id);
+  save(); renderReportPeople(); refreshReport();
+}
+
+function setReportDate(offset){
+  const d = new Date();
+  d.setDate(d.getDate()+offset);
+  document.getElementById('report-date').value = d.toISOString().slice(0,10);
+  refreshReport();
+}
+
+function openDailyReport(){
+  setReportDate(1); // default: tomorrow
+  switchReportTab('report');
+  document.getElementById('modal-report').style.display='flex';
+}
+
+function buildReportText(date){
+  const d = new Date(date+'T12:00');
+  const dayName = DAYS[d.getDay()];
+  const dateStr = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
+
+  const yesterday = new Date(date+'T12:00');
+  yesterday.setDate(yesterday.getDate()-1);
+  const yStr = yesterday.toISOString().slice(0,10);
+
+  // Classify each person – mutually exclusive buckets
+  const returning = []; // חוזר למוצב היום
+  const departing = []; // יוצא הביתה היום
+  const present   = []; // במוצב (רגיל)
+  const atHome    = []; // בבית (כבר לפני)
+  const sick      = []; // גימלים
+  const otherGrp  = []; // אחר
+
+  personnel.forEach(p=>{
+    const stToday = getStatusOnDate(p, date);
+    const stYest  = getStatusOnDate(p, yStr);
+
+    // חוזר למוצב = statusTo הוא תאריך הדוח (חוזר ביום זה)
+    if(p.statusTo === date && stYest !== 'base'){
+      returning.push(p);
+    }
+    // יוצא הביתה = statusFrom הוא תאריך הדוח
+    else if(p.statusFrom === date && stToday !== 'base'){
+      departing.push(p);
+    }
+    else if(stToday === 'base')   present.push(p);
+    else if(stToday === 'home')   atHome.push(p);
+    else if(stToday === 'sick')   sick.push(p);
+    else                          otherGrp.push(p);
+  });
+
+  // Report-only people
+  const rpPresent = reportPeople.filter(p=>p.status==='base');
+  const rpHome    = reportPeople.filter(p=>p.status==='home');
+  const rpSick    = reportPeople.filter(p=>p.status==='sick');
+  const rpOther   = reportPeople.filter(p=>p.status==='other');
+
+  const allPresent = [...present,  ...rpPresent];
+  const allHome    = [...atHome,   ...rpHome];
+  const allSick    = [...sick,     ...rpSick];
+  const allOther   = [...otherGrp, ...rpOther];
+  const totalAll   = personnel.length + reportPeople.length;
+  const totalPresent = allPresent.length + returning.length;
+
+  let txt = '';
+  txt += `📋 *דוח נוכחות – חפ"ק מפ ב' גדוד 419*\n`;
+  txt += `📅 ${dayName} ${dateStr}\n`;
+  txt += `──────────────────────\n\n`;
+
+  // Summary
+  txt += `👥 *סה"כ: ${totalAll}*\n`;
+  txt += `✅ נוכח: ${totalPresent}`;
+  if(allHome.length)  txt += ` | 🔵 בבית: ${allHome.length}`;
+  if(allSick.length)  txt += ` | 🟡 גימלים: ${allSick.length}`;
+  if(allOther.length) txt += ` | 🟣 אחר: ${allOther.length}`;
+  txt += `\n\n`;
+
+  // 1. חוזרים למוצב
+  if(returning.length){
+    txt += `🔄 *חוזרים למוצב (${returning.length})*\n`;
+    returning.forEach((p,i)=> txt += `${i+1}. ${p.name} – נכנס למשמרת לילה\n`);
+    txt += `\n`;
+  }
+
+  // 2. יוצאים הביתה
+  if(departing.length){
+    txt += `🚪 *יוצאים הביתה (${departing.length})*\n`;
+    departing.forEach((p,i)=>{
+      const until = p.statusTo ? ` עד ${p.statusTo}` : '';
+      const note  = p.statusNote ? ` (${p.statusNote})` : '';
+      txt += `${i+1}. ${p.name}${until}${note}\n`;
+    });
+    txt += `\n`;
+  }
+
+  // 3. במוצב
+  if(allPresent.length){
+    txt += `✅ *במוצב (${allPresent.length})*\n`;
+    allPresent.forEach((p,i)=> txt += `${i+1}. ${p.name}\n`);
+    txt += `\n`;
+  }
+
+  // 4. בבית
+  if(allHome.length){
+    txt += `🔵 *בבית (${allHome.length})*\n`;
+    allHome.forEach((p,i)=>{
+      const until = p.statusTo ? ` (עד ${p.statusTo})` : '';
+      txt += `${i+1}. ${p.name}${until}\n`;
+    });
+    txt += `\n`;
+  }
+
+  // 5. גימלים
+  if(allSick.length){
+    txt += `🟡 *גימלים (${allSick.length})*\n`;
+    allSick.forEach((p,i)=>{
+      const until = p.statusTo ? ` (עד ${p.statusTo})` : '';
+      const note  = p.statusNote ? ` – ${p.statusNote}` : '';
+      txt += `${i+1}. ${p.name}${until}${note}\n`;
+    });
+    txt += `\n`;
+  }
+
+  // 6. אחר
+  if(allOther.length){
+    txt += `🟣 *אחר (${allOther.length})*\n`;
+    allOther.forEach((p,i)=>{
+      const note = p.statusNote ? ` – ${p.statusNote}` : '';
+      txt += `${i+1}. ${p.name}${note}\n`;
+    });
+    txt += `\n`;
+  }
+
+  txt += `🕐 נשלח: ${new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'})}`;
+  return txt;
+}
+
+function refreshReport(){
+  const date = document.getElementById('report-date').value;
+  if(!date) return;
+  document.getElementById('report-preview').value = buildReportText(date);
+}
+
+function sendWA(){
+  const txt = document.getElementById('report-preview').value;
+  const encoded = encodeURIComponent(txt);
+  window.open('https://wa.me/?text=' + encoded, '_blank');
+}
+
+function copyReport(){
+  const txt = document.getElementById('report-preview').value;
+  navigator.clipboard.writeText(txt)
+    .then(()=> toast('דוח הועתק! 📋','ok'))
+    .catch(()=>{
+      document.getElementById('report-preview').select();
+      document.execCommand('copy');
+      toast('הועתק!','ok');
+    });
+}
+// ── BACKUP / RESTORE ──
+function exportData(){
+  const data = {
+    v: 4,
+    exported: new Date().toISOString(),
+    assignments,
+    personnel,
+    alerts,
+    reportPeople
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url;
+  a.download = 'chapak419-backup-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('גיבוי הורד ✅','ok');
+}
+
+function importData(e){
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    try{
+      const data = JSON.parse(ev.target.result);
+      if(!data.personnel && !data.assignments) throw new Error('קובץ לא תקין');
+      if(!confirm('לטעון את הגיבוי? הנתונים הנוכחיים יימחקו.')) return;
+      assignments  = data.assignments  || [];
+      personnel    = data.personnel    || [];
+      alerts       = data.alerts       || [];
+      reportPeople = data.reportPeople || [];
+      save();
+      closeModal('modal-data');
+      refresh();
+      toast('נתונים שוחזרו בהצלחה ✅','ok');
+    } catch(err){
+      toast('שגיאה בקריאת הקובץ','err');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+// ── INIT ──
+checkStatusExpiry();
+renderToday(); updateCounts();
+setTimeout(autoAlerts, 600);
+
+// ══════════════════════════════════════════════
+//  PWA – MANIFEST + SERVICE WORKER (inline)
+// ══════════════════════════════════════════════
+(function(){
+
+// 1. Inject manifest via Blob
+const manifest = {
+  name: 'חפ"ק מפ ב\' – גדוד 419',
+  short_name: 'חפ"ק מפ',
+  description: 'ניהול משמרות חפ"ק מפ ב\' גדוד 419',
+  start_url: '.',
+  display: 'standalone',
+  orientation: 'portrait',
+  background_color: '#08090c',
+  theme_color: '#00e5a0',
+  lang: 'he',
+  dir: 'rtl',
+  icons: [
+    { src: buildIcon(192), sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
+    { src: buildIcon(512), sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
+  ]
+};
+
+function buildIcon(size){
+  const c = document.createElement('canvas');
+  c.width = c.height = size;
+  const ctx = c.getContext('2d');
+  // background
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0,0,size,size);
+  // green square inset
+  const pad = size * 0.12;
+  ctx.fillStyle = '#00e5a0';
+  roundRect(ctx, pad, pad, size-pad*2, size-pad*2, size*0.12);
+  // text
+  ctx.fillStyle = '#0f172a';
+  ctx.font = `bold ${size*0.22}px Arial`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('חפ"ק', size/2, size*0.38);
+  ctx.font = `bold ${size*0.16}px Arial`;
+  ctx.fillText("מפ ב'", size/2, size*0.62);
+  return c.toDataURL('image/png');
+}
+
+function roundRect(ctx, x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y);
+  ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h);
+  ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+  ctx.fill();
+}
+
+// Resolve icon data URLs into the manifest
+manifest.icons[0].src = buildIcon(192);
+manifest.icons[1].src = buildIcon(512);
+
+const mBlob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
+const mUrl  = URL.createObjectURL(mBlob);
+const mLink = document.createElement('link');
+mLink.rel='manifest'; mLink.href=mUrl;
+document.head.appendChild(mLink);
+
+// Apple touch icon
+const appleLink = document.createElement('link');
+appleLink.rel='apple-touch-icon';
+appleLink.href=buildIcon(180);
+document.head.appendChild(appleLink);
+
+// 2. Register Service Worker via Blob
+const swCode = `
+const CACHE = 'chapak-v1';
+self.addEventListener('install', e=>{
+  e.waitUntil(
+    caches.open(CACHE).then(c=>c.addAll(['.']))
+    .catch(()=>{})
+  );
+  self.skipWaiting();
+});
+self.addEventListener('activate', e=>{ e.waitUntil(clients.claim()); });
+self.addEventListener('fetch', e=>{
+  e.respondWith(
+    fetch(e.request).catch(()=>caches.match(e.request))
+  );
+});
+`;
+
+if('serviceWorker' in navigator){
+  const swBlob = new Blob([swCode], {type:'application/javascript'});
+  const swUrl  = URL.createObjectURL(swBlob);
+  navigator.serviceWorker.register(swUrl, {scope:'./'})
+    .then(()=>console.log('SW registered'))
+    .catch(e=>console.warn('SW:', e));
+}
+
+// 3. Install prompt banner
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e=>{
+  e.preventDefault();
+  deferredPrompt = e;
+  showInstallBanner();
+});
+
+function showInstallBanner(){
+  if(document.getElementById('install-banner')) return;
+  const banner = document.createElement('div');
+  banner.id = 'install-banner';
+  banner.innerHTML = `
+    <div style="position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+      background:#0f172a;border:1px solid #00e5a0;border-radius:10px;
+      padding:14px 18px;display:flex;align-items:center;gap:12px;
+      box-shadow:0 6px 30px rgba(0,0,0,.6);z-index:9998;max-width:340px;width:90%">
+      <div style="font-size:28px">📲</div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:700;color:#e0e8f0">התקן כאפליקציה</div>
+        <div style="font-size:11px;color:#5a7290;margin-top:2px">גישה מהירה מהמסך הראשי</div>
+      </div>
+      <button onclick="installPWA()" style="background:#00e5a0;color:#000;border:none;padding:8px 14px;border-radius:6px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit">התקן</button>
+      <button onclick="document.getElementById('install-banner').remove()" style="background:none;border:none;color:#5a7290;font-size:20px;cursor:pointer;padding:0 2px;line-height:1">×</button>
+    </div>`;
+  document.body.appendChild(banner);
+}
+
+window.installPWA = function(){
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(r=>{
+    if(r.outcome==='accepted') toast('האפליקציה הותקנה! 🎉','ok');
+    deferredPrompt=null;
+    const b=document.getElementById('install-banner');
+    if(b) b.remove();
+  });
+};
+
+// iOS manual install hint (no beforeinstallprompt on Safari)
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isInStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+if(isIOS && !isInStandalone){
+  setTimeout(()=>{
+    if(document.getElementById('install-banner')) return;
+    const b=document.createElement('div');
+    b.id='install-banner';
+    b.innerHTML=`
+      <div style="position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+        background:#0f172a;border:1px solid #00e5a0;border-radius:10px;
+        padding:14px 18px;display:flex;align-items:center;gap:12px;
+        box-shadow:0 6px 30px rgba(0,0,0,.6);z-index:9998;max-width:340px;width:90%">
+        <div style="font-size:24px">📲</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;color:#e0e8f0">התקן כאפליקציה</div>
+          <div style="font-size:11px;color:#5a7290;margin-top:2px">לחץ ↑ ואז "הוסף למסך הבית"</div>
+        </div>
+        <button onclick="this.closest('#install-banner').remove()" style="background:none;border:none;color:#5a7290;font-size:20px;cursor:pointer;padding:0 2px;line-height:1">×</button>
+      </div>`;
+    document.body.appendChild(b);
+    setTimeout(()=>{ const el=document.getElementById('install-banner'); if(el)el.remove(); }, 8000);
+  }, 2000);
+}
+
+})();
+</script>
+</body>
+</html>
